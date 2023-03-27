@@ -1,0 +1,3 @@
+packages:
+  # 所有包都在packages/的子目录下
+  - 'packages/**'

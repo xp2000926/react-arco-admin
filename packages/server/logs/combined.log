@@ -1,0 +1,48 @@
+{
+  message: '创建用户',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-03-21T15:57:54.577Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-03-21T16:00:23.315Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-03-21T16:05:16.037Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-03-21T16:05:16.039Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-03-22T00:58:01.700Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-03-22T00:58:01.702Z'
+}
