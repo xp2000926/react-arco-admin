@@ -19,6 +19,7 @@ const create_user_dto_1 = require("../dtos/create-user.dto");
 const update_user_dto_1 = require("../dtos/update-user.dto");
 const swagger_1 = require("@nestjs/swagger");
 const config_1 = require("@nestjs/config");
+const pagination_params_dto_1 = require("../../shared/dtos/pagination-params.dto");
 let UserController = class UserController {
     constructor(userService, configService) {
         this.userService = userService;
@@ -27,8 +28,15 @@ let UserController = class UserController {
     create(createUserDto) {
         return this.userService.create(createUserDto);
     }
-    findAll() {
-        return this.userService.findAll();
+    async findAll(query) {
+        console.log('query', query);
+        const { data, total } = await this.userService.findAll(query);
+        return {
+            data,
+            meta: {
+                total,
+            },
+        };
     }
     findOne(id) {
         return this.userService.findOne(id);
@@ -64,9 +72,10 @@ __decorate([
         status: common_1.HttpStatus.OK,
         type: create_user_dto_1.CreateUserDto,
     }),
+    __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [pagination_params_dto_1.PaginationParamsDto]),
+    __metadata("design:returntype", Promise)
 ], UserController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),

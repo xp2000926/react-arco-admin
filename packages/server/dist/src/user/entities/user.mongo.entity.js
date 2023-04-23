@@ -10,13 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
+const common_entity_1 = require("../../shared/entities/common.entity");
 const typeorm_1 = require("typeorm");
-let User = class User {
+let User = class User extends common_entity_1.Common {
 };
-__decorate([
-    (0, typeorm_1.ObjectIdColumn)(),
-    __metadata("design:type", typeorm_1.ObjectID)
-], User.prototype, "_id", void 0);
 __decorate([
     (0, typeorm_1.Column)('text'),
     __metadata("design:type", String)

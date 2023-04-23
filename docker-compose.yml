@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  server:
+    build:
+      context: ./packages/server/
+      args:
+        - APP_ENV
+    ports:
+      - 4000:4000
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_PORT: ${APP_PORT}
+      DB_URL: ${DB_URL}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_ENTITY_NAME: ${DB_ENTITY_NAME}
+      DB_SYNCHRONIZE: ${DB_SYNCHRONIZE}
+      DB_LOGGING: ${DB_LOGGING}
+    depends_on:
+      - mongo
+      - redis
+    restart: always
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongodb/data:/data/db
+      - ./mongodb/dump:/dump
+    ports:
+      - 27017:27017
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 9000:8081
+    depends_on:
+      - mongo
+  redis:
+    image: redis
+    command: redis-server --requirepass arco666psw
+    ports:
+      - '6379:6379'

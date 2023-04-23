@@ -9,7 +9,7 @@ const generateDocument = (app) => {
         .setTitle(packageConfig.name)
         .setDescription(packageConfig.description)
         .setVersion(packageConfig.version)
-        .setExternalDoc(packageConfig.name, 'http://localhost:3000/api/doc')
+        .setExternalDoc(packageConfig.name, 'http://localhost:4000/api/doc')
         .addBearerAuth()
         .build();
     const document = swagger_1.SwaggerModule.createDocument(app, options);

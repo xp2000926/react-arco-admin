@@ -5,6 +5,7 @@ import { CreateUserDto } from '../dtos/create-user.dto';
 import { Inject, Injectable } from '@nestjs/common';
 import { User } from '../entities/user.mongo.entity';
 import { UpdateUserDto } from '../dtos/update-user.dto';
+import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto';
 
 @Injectable()
 export class UserService {
@@ -31,8 +32,22 @@ export class UserService {
       email: '1@1.cpm',
     });
   }
-  findAll() {
-    return this.userRepository.findAndCount({});
+  async findAll({
+    pageSize,
+    page,
+  }: PaginationParamsDto): Promise<{ data: User[]; total: number }> {
+    const [data, count] = await this.userRepository.findAndCount({
+      order: {
+        name: 'DESC',
+      }, //排序
+      skip: (page - 1) * pageSize,
+      take: pageSize * 1,
+      cache: true, //在家缓存优化
+    });
+    return {
+      data,
+      total: count,
+    };
   }
 
   findOne(id: string) {

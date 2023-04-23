@@ -37,8 +37,19 @@ let UserService = UserService_1 = class UserService {
             email: '1@1.cpm',
         });
     }
-    findAll() {
-        return this.userRepository.findAndCount({});
+    async findAll({ pageSize, page, }) {
+        const [data, count] = await this.userRepository.findAndCount({
+            order: {
+                name: 'DESC',
+            },
+            skip: (page - 1) * pageSize,
+            take: pageSize * 1,
+            cache: true,
+        });
+        return {
+            data,
+            total: count,
+        };
     }
     findOne(id) {
         return this.userRepository.findOneBy(id);

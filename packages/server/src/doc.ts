@@ -6,7 +6,7 @@ export const generateDocument = (app) => {
     .setTitle(packageConfig.name)
     .setDescription(packageConfig.description) // 文档介绍
     .setVersion(packageConfig.version) // 文档版本
-    .setExternalDoc(packageConfig.name, 'http://localhost:3000/api/doc')
+    .setExternalDoc(packageConfig.name, 'http://localhost:4000/api/doc')
     .addBearerAuth() // jwt 允许token鉴权 增加鉴权功能
     .build();
   const document = SwaggerModule.createDocument(app, options);

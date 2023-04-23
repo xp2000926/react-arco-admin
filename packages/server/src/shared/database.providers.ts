@@ -19,8 +19,8 @@ export const DatabaseProviders = [
         entities: [path.join(__dirname, `../../**/*.mongo.entity{.ts,.js}`)],
         logging: configService.get<boolean>('database.logging'),
         synchronize: configService.get<boolean>('database.synchronize'),
+        useUnifiedTopology: true,
       };
-
       const ds = new DataSource(config);
       await ds.initialize();
       console.log('数据库连 mongodb 接成功');

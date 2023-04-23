@@ -46,3 +46,387 @@
   level: 'debug',
   timestamp: '2023-03-22T00:58:01.702Z'
 }
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:50.695Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:50.697Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:51.572Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:51.572Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:51.780Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:51.781Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:51.998Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:51.998Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:52.185Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:52.185Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:52.410Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:52.411Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:52.613Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:52.613Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:52.825Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:52.825Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:53.066Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:53.066Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:53.275Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:53.275Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:53.495Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:53.496Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:53.704Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:53.704Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:53.908Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:53.908Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:54.135Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:54.136Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:54.329Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:54.330Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T10:59:54.680Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T10:59:54.680Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T11:00:05.230Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T11:00:05.230Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T12:36:07.895Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T12:36:07.897Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-05T12:40:55.351Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-05T12:40:55.351Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-07T04:27:43.950Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-07T04:27:43.953Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-22T07:35:23.361Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-22T07:35:23.364Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-22T07:51:24.243Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-22T07:51:24.244Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-23T13:15:17.323Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-23T13:15:17.325Z'
+}
+{
+  message: '创建用户(info)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'info',
+  timestamp: '2023-04-23T13:15:50.438Z'
+}
+{
+  message: '创建用户(debug)',
+  contextName: 'UserService',
+  ctx: null,
+  a: 123,
+  level: 'debug',
+  timestamp: '2023-04-23T13:15:50.439Z'
+}

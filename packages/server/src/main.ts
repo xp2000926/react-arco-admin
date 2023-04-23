@@ -2,7 +2,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { generateDocument } from './doc';
-const port = 3000;
+const port = 4000;
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // 添加全局管道(数据校验)

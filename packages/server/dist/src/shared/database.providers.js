@@ -20,6 +20,7 @@ exports.DatabaseProviders = [
                 entities: [path.join(__dirname, `../../**/*.mongo.entity{.ts,.js}`)],
                 logging: configService.get('database.logging'),
                 synchronize: configService.get('database.synchronize'),
+                useUnifiedTopology: true,
             };
             const ds = new typeorm_1.DataSource(config);
             await ds.initialize();
