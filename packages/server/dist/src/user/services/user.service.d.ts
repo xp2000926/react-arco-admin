@@ -10,10 +10,7 @@ export declare class UserService {
     private readonly userRepository;
     private readonly logger;
     constructor(systemService: SystemService, userRepository: MongoRepository<User>, logger: AppLogger);
-    create(createUserDto: CreateUserDto): Promise<{
-        name: string;
-        email: string;
-    } & User>;
+    create(createUserDto: CreateUserDto): Promise<CreateUserDto & User>;
     findAll({ pageSize, page, }: PaginationParamsDto): Promise<{
         data: User[];
         total: number;

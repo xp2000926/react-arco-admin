@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { Common } from 'src/shared/entities/common.entity';
 import { Column, Entity } from 'typeorm';
 
@@ -7,4 +8,6 @@ export class User extends Common {
   name: string;
   @Column({ length: 200 })
   email: string;
+  @Column()
+  role?: ObjectId;
 }

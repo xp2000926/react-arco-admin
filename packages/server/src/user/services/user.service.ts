@@ -18,19 +18,7 @@ export class UserService {
     this.logger.setContext(UserService.name);
   }
   create(createUserDto: CreateUserDto) {
-    this.logger.info(null, '创建用户(info)', {
-      a: 123,
-    });
-    this.logger.debug(null, '创建用户(debug)', {
-      a: 123,
-    });
-    // console.log(this.systemService.getEnv());
-    // 调用Modle
-    // return 'This UserService Create!!!!';
-    return this.userRepository.save({
-      name: 'haha',
-      email: '1@1.cpm',
-    });
+    return this.userRepository.save(createUserDto);
   }
   async findAll({
     pageSize,

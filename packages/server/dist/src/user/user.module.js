@@ -12,12 +12,14 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./services/user.service");
 const user_controller_1 = require("./controllers/user.controller");
 const user_providers_1 = require("./user.providers");
+const role_controller_1 = require("./controllers/role.controller");
+const role_service_1 = require("./services/role.service");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
     (0, common_1.Module)({
-        controllers: [user_controller_1.UserController],
-        providers: [user_service_1.UserService, ...user_providers_1.UserProviders],
+        controllers: [user_controller_1.UserController, role_controller_1.RoleController],
+        providers: [user_service_1.UserService, ...user_providers_1.UserProviders, role_service_1.RoleService],
         imports: [shared_module_1.SharedModule],
     })
 ], UserModule);

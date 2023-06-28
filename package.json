@@ -6,6 +6,7 @@
   "scripts": {
     "preinstall": "node ./scripts/preinstall.js",
     "db:start": "docker-compose up -d redis mongo mongo-express",
+    "db:stop": "docker-compose down",
     "db:dump": "docker-compose exec mongo mongodump --db nest-server --out /dump/init",
     "db:restore": "docker-compose exec mongo mongorestore --db nest-server /dump/init/nest-server",
     "serve":"concurrently \"cd packages/server && pnpm dev\" \"pnpm db:start\""

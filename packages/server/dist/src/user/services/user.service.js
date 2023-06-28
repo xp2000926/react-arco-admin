@@ -26,16 +26,7 @@ let UserService = UserService_1 = class UserService {
         this.logger.setContext(UserService_1.name);
     }
     create(createUserDto) {
-        this.logger.info(null, '创建用户(info)', {
-            a: 123,
-        });
-        this.logger.debug(null, '创建用户(debug)', {
-            a: 123,
-        });
-        return this.userRepository.save({
-            name: 'haha',
-            email: '1@1.cpm',
-        });
+        return this.userRepository.save(createUserDto);
     }
     async findAll({ pageSize, page, }) {
         const [data, count] = await this.userRepository.findAndCount({

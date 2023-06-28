@@ -7,10 +7,7 @@ export declare class UserController {
     private readonly userService;
     private readonly configService;
     constructor(userService: UserService, configService: ConfigService);
-    create(createUserDto: CreateUserDto): Promise<{
-        name: string;
-        email: string;
-    } & import("../entities/user.mongo.entity").User>;
+    create(createUserDto: CreateUserDto): Promise<CreateUserDto & import("../entities/user.mongo.entity").User>;
     findAll(query: PaginationParamsDto): Promise<{
         data: import("../entities/user.mongo.entity").User[];
         meta: {

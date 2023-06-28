@@ -30,6 +30,7 @@
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.0",
         "mongodb": "^3.6.0",
+        "mongoose": "^7.1.0",
         "nest-knife4j": "^1.0.1",
         "reflect-metadata": "^0.1.13",
         "rxjs": "^7.2.0",
