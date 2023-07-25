@@ -24,6 +24,10 @@ export const todoStorage = {
 //   { id: 3, title: '掌握JSX', completed: false },
 //   { id: 4, title: '掌握hooks', completed: false },
 // ]);
+//========================
+// className
+// inline style
+// css Module 
 function App() {
   const { todos, addTodo, removeTodo, updateTodo } = useTodos(
     todoStorage.fetch()

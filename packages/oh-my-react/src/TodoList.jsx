@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import classnames from 'classnames';
 export default function TodoList({ todos, removeTodo, updateTodo }) {
   // 控制用户输入过程中表单发生的操作
   const changeState = (e, currentTodo) => {
@@ -61,11 +61,11 @@ export default function TodoList({ todos, removeTodo, updateTodo }) {
       {/* 列表 */}
       {todos.map((todo) => (
         <li
-          className={[
-            'todo',
-            todo.completed ? 'completed' : '',
-            editedTodo.title && editedTodo.id === todo.id ? 'editing' : '',
-          ].join(' ')}
+          className={classnames({
+            todo: true,
+            completed: todo.completed,
+            editing: editedTodo.id === todo.id,
+          })}
           key={todo.id.toString()}
         >
           <div className="view">
