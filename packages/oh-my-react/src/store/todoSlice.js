@@ -43,6 +43,7 @@ const todoSlice = createSlice({
 
 // selector用于选出想要的数据
 export const selectTodos = (state) => state.todos.value;
+export const selectTodoById = (state,id) => state.todos.value.find(todo=>todo.id=== +id);
 export const selectFilteredTodos = createSelector(
   (state) => state.visibility, // 选出所需状态作为输入
   (state) => state.todos.value,// 选出所需状态作为输入

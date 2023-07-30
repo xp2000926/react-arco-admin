@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./counterSlice";
 import todoReducer, { todoStorage } from "./todoSlice";
 import visibilityReducer from "./visibilitySlice";
-
+import user from './userSlice'
 // 声明一个中间件：只要是和todos相关的action，我们都触发保存行为
 const storageMiddleware = (store) => (next) => (action) => {
   if (action.type.startsWith("todos/")) {
@@ -19,6 +19,7 @@ export const store = configureStore({
     counter:counterReducer,
     todos:todoReducer,
     visibility:visibilityReducer,
+    user
   },
 });
 

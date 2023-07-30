@@ -4,6 +4,10 @@ import TodoList from './TodoList';
 import TodoFilter from './TodoFilter';
 import { Counter } from './Store';
 import AddTodo from './AddTodo';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectRole, setRole } from './store/userSlice';
+import AuthWrapper from './AuthWrapper';
 // useState useEffect useContext
 // useReducer useCallback useMemo useRef ...
 
@@ -25,14 +29,30 @@ import AddTodo from './AddTodo';
 //========================
 // className
 // inline style
-// css Module 
+// css Module
 function App() {
+  const role = useSelector(selectRole);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function onLogout() {
+    // 清空角色
+    dispatch(setRole(''));
+    // 跳转登录页
+    navigate('/login');
+  }
   return (
     <>
+      <div>
+        你好, {role}
+        <button onClick={onLogout}>注销</button>
+      </div>
+
       <h2>待办项</h2>
       <Counter />
       {/* 新增待办 */}
-      <AddTodo />
+      <AuthWrapper roles={['admin']}>
+        <AddTodo />
+      </AuthWrapper>
       {/* 待办列表 */}
       <TodoList />
       {/* 过滤 */}

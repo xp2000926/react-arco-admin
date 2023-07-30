@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredTodos, removeTodo, updateTodo } from './store/todoSlice';
+import { Link } from 'react-router-dom';
+import AuthWrapper from './AuthWrapper';
 
 export default function TodoList() {
   // 获取todos和dispatch
@@ -29,7 +31,7 @@ export default function TodoList() {
     }
   };
   useEffect(() => {
-     // 如果editedTodo存在则设置焦点
+    // 如果editedTodo存在则设置焦点
     if (editedTodo && inputRef) {
       // 设置输入框焦点
       inputRef.focus();
@@ -37,11 +39,11 @@ export default function TodoList() {
   }, [editedTodo]);
 
   // 用户双击触发编辑模式
-  const editTodo = (todo) => {
-    // 克隆一个todo用于编辑
-    // setBeforeEditCache(todo.title);
-    setEditedTodo({ ...todo });
-  };
+  // const editTodo = (todo) => {
+  //   // 克隆一个todo用于编辑
+  //   // setBeforeEditCache(todo.title);
+  //   setEditedTodo({ ...todo });
+  // };
   // 受控组件要求的事件处理
   const onEditing = (e) => {
     const title = e.target.value;
@@ -50,7 +52,7 @@ export default function TodoList() {
     } else {
       // title为空删除该项
       // removeTodo(editedTodo.id);
-        // 使用dispatch(removeTodo())删除指定项
+      // 使用dispatch(removeTodo())删除指定项
       dispatch(removeTodo(editedTodo.id));
     }
   };
@@ -59,19 +61,18 @@ export default function TodoList() {
     if (e.code === 'Enter') {
       if (editedTodo.title) {
         // updateTodo(editedTodo)
-         // 使用dispatch(updateTodo())更新
+        // 使用dispatch(updateTodo())更新
         dispatch(updateTodo(editedTodo));
       }
       setEditedTodo(initial);
     }
   };
-  const cancelEdit = (e) => {
+  const cancelEdit = () => {
     setEditedTodo(initial);
   };
 
   return (
     <ul className="todo-list">
-
       {/* 列表 */}
       {todos.map((todo) => (
         <li
@@ -90,22 +91,25 @@ export default function TodoList() {
               checked={todo.completed}
               onChange={(e) => changeState(e, todo)}
             />
-             {/* 属性是动态值使用{xxx} */}
+            {/* 属性是动态值使用{xxx} */}
             {/* 渲染列表时务必指定key */}
             {/* 双击开启行内编辑：隐藏.view，显示.edit */}
-            <span onDoubleClick={() => editTodo(todo)}>{todo.title}</span>
-            <button
-              className="destroy"
-              onClick={() => dispatch(removeTodo(editedTodo.id))}
-            >
-              X
-            </button>
+            {/* <span onDoubleClick={() => editTodo(todo)}>{todo.title}</span> */}
+            <Link to={`/edit/${todo.id}`}>{todo.title}</Link>
+            <AuthWrapper roles={['admin']}>
+              <button
+                className="destroy"
+                onClick={() => dispatch(removeTodo(editedTodo.id))}
+              >
+                X
+              </button>
+            </AuthWrapper>
           </div>
           {/* 声明editedTodo状态, onChange处理状态变化 */}
           {/* onKeyUp处理修改确认，onBlur退出编辑模式 */}
           <input
             className="edit"
-              //设置一个函数到ref，根据上下文中todo的情况动态设置期望的input元素
+            //设置一个函数到ref，根据上下文中todo的情况动态设置期望的input元素
             ref={(el) => setEditInputRef(el, todo)}
             type="text"
             value={editedTodo.title}
