@@ -9,12 +9,13 @@
     "db:stop": "docker-compose down",
     "db:dump": "docker-compose exec mongo mongodump --db nest-server --out /dump/init",
     "db:restore": "docker-compose exec mongo mongorestore --db nest-server /dump/init/nest-server",
-    "serve":"concurrently \"cd packages/server && pnpm dev\" \"pnpm db:start\""
+    "serve": "concurrently \"cd packages/server && pnpm dev\" \"pnpm db:start\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "arco-cli": "^1.27.5",
     "concurrently": "^7.6.0"
   }
 }
