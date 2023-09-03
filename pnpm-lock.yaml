@@ -308,6 +308,9 @@ importers:
 
   packages/server:
     dependencies:
+      '@nestjs-modules/ioredis':
+        specifier: ^1.0.1
+        version: 1.0.1(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)(ioredis@4.28.5)
       '@nestjs/common':
         specifier: ^9.0.0
         version: 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.2.0)
@@ -370,7 +373,7 @@ importers:
         version: 7.2.0
       typeorm:
         specifier: 0.3.11
-        version: 0.3.11(mongodb@3.6.0)(ts-node@10.0.0)
+        version: 0.3.11(ioredis@4.28.5)(mongodb@3.6.0)(ts-node@10.0.0)
       winston:
         specifier: ^3.8.2
         version: 3.8.2
@@ -503,7 +506,7 @@ importers:
         version: 7.8.1
       typeorm:
         specifier: 0.3.11
-        version: 0.3.11(mongodb@3.6.0)(ts-node@10.0.0)
+        version: 0.3.11(ioredis@4.28.5)(mongodb@3.6.0)(ts-node@10.0.0)
       winston:
         specifier: ^3.8.2
         version: 3.8.2
@@ -2805,6 +2808,18 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
       react-is: 16.13.1
+    dev: false
+
+  /@nestjs-modules/ioredis@1.0.1(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)(ioredis@4.28.5):
+    resolution: {integrity: sha512-UhIOqL5pXeJlCucHMkJONwqecvLFySW/95uw34Umh0ld7v+6tvYRK3JHQYcJqzlmNiq52bfNxf7CUpuHCSdA3A==}
+    peerDependencies:
+      '@nestjs/common': ^6.7.0 || ^7.0.0 || ^8.0.0
+      '@nestjs/core': ^6.7.0 || ^7.0.0 || ^8.0.0
+      ioredis: ^4.0.0
+    dependencies:
+      '@nestjs/common': 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.2.0)
+      '@nestjs/core': 9.0.0(@nestjs/common@9.0.0)(@nestjs/platform-express@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.2.0)
+      ioredis: 4.28.5
     dev: false
 
   /@nestjs/cli@9.0.0:
@@ -6555,6 +6570,11 @@ packages:
       readable-stream: 2.3.8
     dev: true
 
+  /cluster-key-slot@1.1.2:
+    resolution: {integrity: sha512-RMr0FhtfXemyinomL4hrWcYJxmX6deFdCxpJzhDttxgO1+bcCnkk+9drydLVDmAMG7NE6aN/fl4F7ucU/90gAA==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /co@4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
@@ -9265,6 +9285,25 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /ioredis@4.28.5:
+    resolution: {integrity: sha512-3GYo0GJtLqgNXj4YhrisLaNNvWSNwSS2wS4OELGfGxH8I69+XfNdnmV1AyN+ZqMh0i7eX+SWjrwFKDBDgfBC1A==}
+    engines: {node: '>=6'}
+    dependencies:
+      cluster-key-slot: 1.1.2
+      debug: 4.3.4
+      denque: 1.5.1
+      lodash.defaults: 4.2.0
+      lodash.flatten: 4.4.0
+      lodash.isarguments: 3.1.0
+      p-map: 2.1.0
+      redis-commands: 1.7.0
+      redis-errors: 1.2.0
+      redis-parser: 3.0.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /ip@2.0.0:
     resolution: {integrity: sha512-WKa+XuLG1A1R0UWhl2+1XQSi+fZWMsYKffMZTTYsiZaUD8k2yDAj5atimTUD2TZkyCkNEeYE5NhFZmupOGtjYQ==}
     dev: false
@@ -10414,6 +10453,18 @@ packages:
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
+  /lodash.defaults@4.2.0:
+    resolution: {integrity: sha512-qjxPLHd3r5DnsdGacqOMU6pb/avJzdh9tFX2ymgoZE27BmjXrNy/y4LoaiTeAb+O3gL8AfpJGtqfX/ae2leYYQ==}
+    dev: false
+
+  /lodash.flatten@4.4.0:
+    resolution: {integrity: sha512-C5N2Z3DgnnKr0LOpv/hKCgKdb7ZZwafIrsesve6lmzvZIRZRGaZ/l6Q8+2W7NaT+ZwO3fFlSCzCzrDCFdJfZ4g==}
+    dev: false
+
+  /lodash.isarguments@3.1.0:
+    resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
+    dev: false
+
   /lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
     dev: true
@@ -11308,6 +11359,11 @@ packages:
       p-limit: 3.1.0
     dev: true
 
+  /p-map@2.1.0:
+    resolution: {integrity: sha512-y3b8Kpd8OAN444hxfBbFfj1FY/RjtTd8tzYwhUqNYXx0fXx2iX4maP4Qr6qhIKbQXI02wTLAda4fYUbDagTUFw==}
+    engines: {node: '>=6'}
+    dev: false
+
   /p-try@2.2.0:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
@@ -12190,6 +12246,22 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /redis-commands@1.7.0:
+    resolution: {integrity: sha512-nJWqw3bTFy21hX/CPKHth6sfhZbdiHP6bTawSgQBlKOVRG7EZkfHbbHwQJnrE4vsQf0CMNE+3gJ4Fmm16vdVlQ==}
+    dev: false
+
+  /redis-errors@1.2.0:
+    resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
+    engines: {node: '>=4'}
+    dev: false
+
+  /redis-parser@3.0.0:
+    resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
+    engines: {node: '>=4'}
+    dependencies:
+      redis-errors: 1.2.0
+    dev: false
+
   /redux-thunk@2.4.2(redux@4.2.1):
     resolution: {integrity: sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==}
     peerDependencies:
@@ -12954,6 +13026,10 @@ packages:
     dependencies:
       escape-string-regexp: 2.0.0
     dev: true
+
+  /standard-as-callback@2.1.0:
+    resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
+    dev: false
 
   /static-extend@0.1.2:
     resolution: {integrity: sha512-72E9+uLc27Mt718pMHt9VMNiAL4LMsmDbBva8mxWUCkT07fSzEGMYUCk0XWY6lp0j6RBAG4cJ3mWuZv2OE3s0g==}
@@ -13862,7 +13938,7 @@ packages:
   /typedarray@0.0.6:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
 
-  /typeorm@0.3.11(mongodb@3.6.0)(ts-node@10.0.0):
+  /typeorm@0.3.11(ioredis@4.28.5)(mongodb@3.6.0)(ts-node@10.0.0):
     resolution: {integrity: sha512-pzdOyWbVuz/z8Ww6gqvBW4nylsM0KLdUCDExr2gR20/x1khGSVxQkjNV/3YqliG90jrWzrknYbYscpk8yxFJVg==}
     engines: {node: '>= 12.9.0'}
     hasBin: true
@@ -13929,6 +14005,7 @@ packages:
       debug: 4.3.4
       dotenv: 16.3.1
       glob: 7.2.3
+      ioredis: 4.28.5
       js-yaml: 4.1.0
       mkdirp: 1.0.4
       mongodb: 3.6.0

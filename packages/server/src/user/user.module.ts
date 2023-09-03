@@ -10,6 +10,7 @@ import { JwtModule } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { AuthController } from './controllers/auth.controller'
 import { JwtStrategy } from './strategies/jwt.strategy'
+import { RedisModule } from '@nestjs-modules/ioredis'
 @Module({
   controllers: [UserController, RoleController, AuthController],
   providers: [
@@ -22,7 +23,17 @@ import { JwtStrategy } from './strategies/jwt.strategy'
   imports: [
     JwtModule.registerAsync({
       inject: [ConfigService], // 注入 ConfigService
-      imports: [SharedModule],
+      imports: [
+        SharedModule,
+        //连接redis
+        RedisModule.forRootAsync({
+          imports: [SharedModule],
+          inject: [ConfigService],
+          useFactory: (configService: ConfigService) => ({
+            config: configService.get('redis'),
+          }),
+        }),
+      ],
       useFactory: (configService: ConfigService) => configService.get('jwt'),
     }),
     SharedModule,

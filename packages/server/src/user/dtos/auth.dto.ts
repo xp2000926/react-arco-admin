@@ -8,7 +8,7 @@ export class RegisterSMSDTO {
    */
   @Matches(regMobileCN, { message: '请输入正确手机号' })
   @IsNotEmpty({ message: '请输入手机号' })
-  @ApiProperty({ example: '13611177420' })
+  @ApiProperty({ example: '18715147473' })
   readonly phoneNumber: string
 
   /**
@@ -32,7 +32,7 @@ export class RegisterCodeDTO {
    */
   @Matches(regMobileCN, { message: '请输入正确手机号' })
   @IsNotEmpty({ message: '请输入手机号' })
-  @ApiProperty({ example: '13611177420' })
+  @ApiProperty({ example: '18715147473' })
   readonly phoneNumber: string
 
   @IsNotEmpty({ message: '请输入验证码ID' })

@@ -494,3 +494,24 @@
   level: 'debug',
   timestamp: '2023-05-03T08:25:13.822Z'
 }
+{
+  message: '生成验证码：2133',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T14:14:49.607Z'
+}
+{
+  message: '生成验证码：1512',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T14:23:15.761Z'
+}
+{
+  message: '生成验证码：9706',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T14:25:23.168Z'
+}
