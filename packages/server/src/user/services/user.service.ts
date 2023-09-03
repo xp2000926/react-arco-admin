@@ -7,6 +7,7 @@ import { User } from '../entities/user.mongo.entity'
 import { UpdateUserDto } from '../dtos/update-user.dto'
 import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
 import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
+import { UploadService } from 'src/shared/upload/upload.service'
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,7 @@ export class UserService {
     @Inject('USER_REPOSITORY')
     private readonly userRepository: MongoRepository<User>,
     private readonly logger: AppLogger,
+    private readonly uploadService: UploadService,
   ) {
     this.logger.setContext(UserService.name)
   }
@@ -63,7 +65,14 @@ export class UserService {
   remove(id: string) {
     return this.userRepository.delete(id)
   }
-
+  /**
+   * 上传头像
+   * @param {*} file
+   */
+  async uploadAvatar(file) {
+    const { url } = await this.uploadService.upload(file)
+    return { data: url }
+  }
   getPassword(password: string) {
     const salt = makeSalt() // 制作密码盐
     const hashPassword = encryptPassword(password, salt) // 加密密码

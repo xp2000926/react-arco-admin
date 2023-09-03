@@ -24,7 +24,7 @@ export const encryptPassword = (password: string, salt: string): string => {
 }
 /**
  * 获取文件哈希值
- * @param {Buffer} buffer 
+ * @param {Buffer} buffer
  */
 export const encryptFileMD5 = (buffer: Buffer) =>
   crypto.createHash('md5').update(buffer).digest('hex')

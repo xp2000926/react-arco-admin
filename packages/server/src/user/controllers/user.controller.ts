@@ -26,7 +26,7 @@ import {
 import { ConfigService } from '@nestjs/config'
 import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
 import { UploadDTO } from '../dtos/upload.dto'
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor } from '@nestjs/platform-express'
 import { encryptFileMD5 } from 'src/shared/utils/cryptogram.util'
 
 @Controller('user')
@@ -113,16 +113,20 @@ export class UserController {
   }
   @Post('upload')
   @ApiOperation({
-    summary: '上传文件',
+    summary: '上传头像',
+  })
+  @ApiResponse({
+    status: HttpStatus.NO_CONTENT,
   })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
   async upload(
     @Req() req: any,
     @Body() uploadDto: UploadDTO,
-    @UploadedFile() file
+    @UploadedFile() file,
   ) {
-    console.log('upload', file);
-    console.log('hash', encryptFileMD5(file.buffer));
+    // console.log('upload', file)
+    // console.log('hash', encryptFileMD5(file.buffer))
+    return this.userService.uploadAvatar(file)
   }
 }

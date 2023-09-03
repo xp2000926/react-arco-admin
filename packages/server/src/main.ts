@@ -3,12 +3,21 @@ import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { generateDocument } from './doc'
 import { NestExpressApplication } from '@nestjs/platform-express'
+import { join } from 'path'
 const port = 4000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   // 添加全局管道(数据校验)
   app.useGlobalPipes(new ValidationPipe({ forbidUnknownValues: false }))
+  const uploadDir =
+    !!process.env.UPLOAD_DIR && process.env.UPLOAD_DIR !== ''
+      ? process.env.UPLOAD_DIR
+      : join(__dirname, '..', 'static/upload')
+  // 静态服务
+  app.useStaticAssets(uploadDir, {
+    prefix: '/static/upload',
+  })
   // 创建文档
   generateDocument(app)
   await app.listen(port, () => {
