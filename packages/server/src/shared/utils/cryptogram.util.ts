@@ -22,3 +22,9 @@ export const encryptPassword = (password: string, salt: string): string => {
     crypto.pbkdf2Sync(password, tempSalt, 10000, 16, 'sha1').toString('base64')
   )
 }
+/**
+ * 获取文件哈希值
+ * @param {Buffer} buffer 
+ */
+export const encryptFileMD5 = (buffer: Buffer) =>
+  crypto.createHash('md5').update(buffer).digest('hex')

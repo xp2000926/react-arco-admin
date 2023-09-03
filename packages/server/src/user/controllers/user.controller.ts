@@ -27,6 +27,7 @@ import { ConfigService } from '@nestjs/config'
 import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
 import { UploadDTO } from '../dtos/upload.dto'
 import { FileInterceptor } from '@nestjs/platform-express';
+import { encryptFileMD5 } from 'src/shared/utils/cryptogram.util'
 
 @Controller('user')
 @ApiTags('用户管理')
@@ -111,6 +112,9 @@ export class UserController {
     return this.userService.remove(id)
   }
   @Post('upload')
+  @ApiOperation({
+    summary: '上传文件',
+  })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
   async upload(
@@ -119,5 +123,6 @@ export class UserController {
     @UploadedFile() file
   ) {
     console.log('upload', file);
+    console.log('hash', encryptFileMD5(file.buffer));
   }
 }
