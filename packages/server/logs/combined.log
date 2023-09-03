@@ -515,3 +515,45 @@
   level: 'info',
   timestamp: '2023-09-03T14:25:23.168Z'
 }
+{
+  message: '图形验证码:j4VO',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:33:39.532Z'
+}
+{
+  message: '图形验证码:6JoS',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:34:39.977Z'
+}
+{
+  message: '图形验证码:R7Oa',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:37:31.284Z'
+}
+{
+  message: '图形验证码:zlIW',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:37:31.780Z'
+}
+{
+  message: '图形验证码:2KJf',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:37:32.221Z'
+}
+{
+  message: '图形验证码:vMXq',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-03T15:39:48.448Z'
+}

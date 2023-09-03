@@ -3,11 +3,12 @@ import { JwtService } from '@nestjs/jwt'
 import { User } from '../entities/user.mongo.entity'
 import { Inject, NotFoundException } from '@nestjs/common'
 import { MongoRepository } from 'typeorm'
-import { encryptPassword } from 'src/shared/utils/cryptogram.util'
+import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
 import { RegisterCodeDTO, UserInfoDto } from '../dtos/auth.dto'
 import { Role } from '../entities/role.mongo.entity'
 import { InjectRedis, Redis } from '@nestjs-modules/ioredis'
 import { AppLogger } from 'src/shared/logger/logger.service'
+import { CaptchaService } from 'src/shared/captcha/captcha.service'
 
 export class AuthService {
   constructor(
@@ -19,7 +20,8 @@ export class AuthService {
     @InjectRedis()
     private readonly redis: Redis,
     private readonly logger: AppLogger,
-  ) { }
+    private readonly captchaService: CaptchaService,
+  ) {}
   async certificate(user: User) {
     const payload = {
       id: user._id,
@@ -89,5 +91,15 @@ export class AuthService {
   generateCode() {
     // 4位验证码
     return [0, 0, 0, 0].map(() => parseInt(Math.random() * 10 + '')).join('')
+  }
+  async getCaptcha() {
+    const { data, text } = await this.captchaService.captche()
+    const id = makeSalt(4)
+    this.logger.info(null, '图形验证码:' + text)
+    this.redis.set('captcha' + id, text, 'EX', 600)
+    const image = `data:image/svg+xml;base64,${Buffer.from(data).toString(
+      'base64',
+    )}`
+    return { id, image }
   }
 }
