@@ -9,7 +9,7 @@ export class CreateUserDto {
   @ApiProperty({ example: '18715147473', description: '手机号' })
   readonly phoneNumber: string
 
-  @ApiProperty({ example: '然叔' })
+  @ApiProperty({ example: 'xp' })
   @IsNotEmpty()
   name?: string
 

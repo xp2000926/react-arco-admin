@@ -9,9 +9,16 @@ import { AuthService } from './services/auth.service'
 import { JwtModule } from '@nestjs/jwt'
 import { ConfigService } from '@nestjs/config'
 import { AuthController } from './controllers/auth.controller'
+import { JwtStrategy } from './strategies/jwt.strategy'
 @Module({
   controllers: [UserController, RoleController, AuthController],
-  providers: [UserService, ...UserProviders, RoleService, AuthService], // 提供者注册
+  providers: [
+    UserService,
+    ...UserProviders,
+    RoleService,
+    AuthService,
+    JwtStrategy,
+  ], // 提供者注册
   imports: [
     JwtModule.registerAsync({
       inject: [ConfigService], // 注入 ConfigService
@@ -21,4 +28,4 @@ import { AuthController } from './controllers/auth.controller'
     SharedModule,
   ],
 })
-export class UserModule {}
+export class UserModule { }
