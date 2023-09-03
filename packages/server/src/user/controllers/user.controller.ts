@@ -9,18 +9,24 @@ import {
   HttpStatus,
   HttpException,
   Query,
+  Req,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common'
 import { UserService } from '../services/user.service'
 import { CreateUserDto } from '../dtos/create-user.dto'
 import { UpdateUserDto } from '../dtos/update-user.dto'
 import {
   ApiBasicAuth,
+  ApiConsumes,
   ApiOperation,
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger'
 import { ConfigService } from '@nestjs/config'
 import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
+import { UploadDTO } from '../dtos/upload.dto'
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('user')
 @ApiTags('用户管理')
@@ -29,7 +35,7 @@ export class UserController {
     private readonly userService: UserService,
     // 注入环境变量
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   // Post： /user
   @Post()
@@ -103,5 +109,15 @@ export class UserController {
   })
   remove(@Param('id') id: string) {
     return this.userService.remove(id)
+  }
+  @Post('upload')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('file'))
+  async upload(
+    @Req() req: any,
+    @Body() uploadDto: UploadDTO,
+    @UploadedFile() file
+  ) {
+    console.log('upload', file);
   }
 }
