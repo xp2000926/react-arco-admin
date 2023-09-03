@@ -9,4 +9,10 @@ export default (): any => ({
     synchronize: process.env.DB_SYNCHRONIZE,
     logging: process.env.DB_LOGGING,
   },
+  jwt: {
+    secret: process.env.JWT_SECRET, // 密钥
+    signOptions: {
+      expiresIn: process.env.JWT_EXPIRES_IN, // token 过期时效
+    },
+  },
 })

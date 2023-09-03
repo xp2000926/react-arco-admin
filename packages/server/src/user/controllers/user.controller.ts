@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpStatus,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   HttpException,
   Query,
   Req,
@@ -27,6 +28,7 @@ import { ConfigService } from '@nestjs/config'
 import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
 import { UploadDTO } from '../dtos/upload.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { encryptFileMD5 } from 'src/shared/utils/cryptogram.util'
 
 @Controller('user')
@@ -36,7 +38,7 @@ export class UserController {
     private readonly userService: UserService,
     // 注入环境变量
     private readonly configService: ConfigService,
-  ) { }
+  ) {}
 
   // Post： /user
   @Post()
