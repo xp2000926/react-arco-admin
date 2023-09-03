@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, Matches, Length, IsEmail } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger'
+import { IsNotEmpty, Matches, Length, IsEmail } from 'class-validator'
 export class CreateUserDto {
   /**
    * 手机号（系统唯一）
@@ -7,11 +7,11 @@ export class CreateUserDto {
   @Matches(/^1\d{10}$/g, { message: '请输入手机号' })
   @IsNotEmpty({ message: '请输入手机号' })
   @ApiProperty({ example: '18715147473', description: '手机号' })
-  readonly phoneNumber: string;
+  readonly phoneNumber: string
 
   @ApiProperty({ example: '然叔' })
   @IsNotEmpty()
-  name?: string;
+  name?: string
 
   @ApiProperty({
     example: '123456',
@@ -19,38 +19,38 @@ export class CreateUserDto {
   })
   @IsNotEmpty()
   @Length(6, 10)
-  password: string;
+  password: string
 
-  salt?: string;
+  salt?: string
 
   @ApiProperty({ example: '3053949745@qq.com', description: '邮箱' })
   @IsEmail()
-  email: string;
+  email: string
 
   @ApiProperty({ example: 'cookieboty' })
   @IsNotEmpty()
-  avatar?: string;
+  avatar?: string
 
   @ApiProperty({ example: 'frontend' })
   @IsNotEmpty()
-  job?: string;
+  job?: string
 
   @ApiProperty({ example: '前端开发工程师' })
   @IsNotEmpty()
-  jobName?: string;
+  jobName?: string
 
   @ApiProperty({ example: 'cookieboty' })
   @IsNotEmpty()
-  organization?: string;
+  organization?: string
 
   @ApiProperty({ example: 'beijing' })
   @IsNotEmpty()
-  location?: string;
+  location?: string
 
   @ApiProperty({ example: 'cookieboty' })
   @IsNotEmpty()
-  personalWebsite?: string;
-  
+  personalWebsite?: string
+
   @ApiProperty({ example: '637855e9e8c408970ef9f4de' })
-  role?;
+  role?
 }

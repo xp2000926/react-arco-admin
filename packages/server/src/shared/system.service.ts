@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 
 @Injectable()
 export class SystemService {
@@ -6,6 +6,6 @@ export class SystemService {
   getEnv() {
     return {
       a: 1,
-    };
+    }
   }
 }

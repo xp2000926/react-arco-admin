@@ -1,6 +1,6 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumber, IsOptional, Min } from 'class-validator';
-import { Transform } from 'class-transformer';
+import { ApiPropertyOptional } from '@nestjs/swagger'
+import { IsNumber, IsOptional, Min } from 'class-validator'
+import { Transform } from 'class-transformer'
 
 export class PaginationParamsDto {
   @ApiPropertyOptional({
@@ -12,7 +12,7 @@ export class PaginationParamsDto {
   @IsOptional()
   @Min(0)
   @Transform(({ value }) => parseInt(value, 10))
-  pageSize = 5;
+  pageSize = 5
   //当前页
   @ApiPropertyOptional({
     description: 'Page, defaults to 0',
@@ -23,5 +23,5 @@ export class PaginationParamsDto {
   @IsOptional()
   @Min(0)
   @Transform(({ value }) => parseInt(value, 10), { toClassOnly: true })
-  page = 1;
+  page = 1
 }

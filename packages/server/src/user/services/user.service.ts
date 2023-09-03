@@ -1,11 +1,12 @@
-import { AppLogger } from '../../shared/logger/logger.service';
-import { SystemService } from '../../shared/system.service';
-import { MongoRepository } from 'typeorm';
-import { CreateUserDto } from '../dtos/create-user.dto';
-import { Inject, Injectable } from '@nestjs/common';
-import { User } from '../entities/user.mongo.entity';
-import { UpdateUserDto } from '../dtos/update-user.dto';
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto';
+import { AppLogger } from '../../shared/logger/logger.service'
+import { SystemService } from '../../shared/system.service'
+import { MongoRepository } from 'typeorm'
+import { CreateUserDto } from '../dtos/create-user.dto'
+import { Inject, Injectable } from '@nestjs/common'
+import { User } from '../entities/user.mongo.entity'
+import { UpdateUserDto } from '../dtos/update-user.dto'
+import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
+import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
 
 @Injectable()
 export class UserService {
@@ -15,10 +16,17 @@ export class UserService {
     private readonly userRepository: MongoRepository<User>,
     private readonly logger: AppLogger,
   ) {
-    this.logger.setContext(UserService.name);
+    this.logger.setContext(UserService.name)
   }
-  create(createUserDto: CreateUserDto) {
-    return this.userRepository.save(createUserDto);
+  create(user: CreateUserDto) {
+    //调用Modle
+    // 加密处理
+    if (user.password) {
+      const { salt, hashPassword } = this.getPassword(user.password)
+      user.salt = salt
+      user.password = hashPassword
+    }
+    return this.userRepository.save(user)
   }
   async findAll({
     pageSize,
@@ -31,22 +39,34 @@ export class UserService {
       skip: (page - 1) * pageSize,
       take: pageSize * 1,
       cache: true, //在家缓存优化
-    });
+    })
     return {
       data,
       total: count,
-    };
+    }
   }
 
   findOne(id: string) {
-    return this.userRepository.findOneBy(id);
+    return this.userRepository.findOneBy(id)
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return this.userRepository.update(id, updateUserDto);
+  update(id: string, user: UpdateUserDto) {
+    // 加密处理
+    if (user.password) {
+      const { salt, hashPassword } = this.getPassword(user.password)
+      user.salt = salt
+      user.password = hashPassword
+    }
+    return this.userRepository.update(id, user)
   }
 
   remove(id: string) {
-    return this.userRepository.delete(id);
+    return this.userRepository.delete(id)
+  }
+
+  getPassword(password: string) {
+    const salt = makeSalt() // 制作密码盐
+    const hashPassword = encryptPassword(password, salt) // 加密密码
+    return { salt, hashPassword }
   }
 }

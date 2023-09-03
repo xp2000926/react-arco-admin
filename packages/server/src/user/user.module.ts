@@ -1,10 +1,10 @@
-import { SharedModule } from './../shared/shared.module';
-import { Module } from '@nestjs/common';
-import { UserService } from './services/user.service';
-import { UserController } from './controllers/user.controller';
-import { UserProviders } from './user.providers';
-import { RoleController } from './controllers/role.controller';
-import { RoleService } from './services/role.service';
+import { SharedModule } from './../shared/shared.module'
+import { Module } from '@nestjs/common'
+import { UserService } from './services/user.service'
+import { UserController } from './controllers/user.controller'
+import { UserProviders } from './user.providers'
+import { RoleController } from './controllers/role.controller'
+import { RoleService } from './services/role.service'
 
 @Module({
   controllers: [UserController, RoleController],

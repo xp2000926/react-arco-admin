@@ -1,9 +1,9 @@
-import { AppLoggerModule } from './logger/logger.module';
-import { configModuleOptions } from './configs/module-options';
-import { SystemService } from './system.service';
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { DatabaseProviders } from './database.providers';
+import { AppLoggerModule } from './logger/logger.module'
+import { configModuleOptions } from './configs/module-options'
+import { SystemService } from './system.service'
+import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { DatabaseProviders } from './database.providers'
 
 @Module({
   exports: [SystemService, ConfigModule, AppLoggerModule, ...DatabaseProviders],

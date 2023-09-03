@@ -1,15 +1,15 @@
-import { ConfigService } from '@nestjs/config';
-import { DataSource, DataSourceOptions } from 'typeorm';
-import * as path from 'path';
+import { ConfigService } from '@nestjs/config'
+import { DataSource, DataSourceOptions } from 'typeorm'
+import * as path from 'path'
 // 设置数据库类型
-const databaseType: DataSourceOptions['type'] = 'mongodb';
+const databaseType: DataSourceOptions['type'] = 'mongodb'
 // 数据库注入
 export const DatabaseProviders = [
   {
     provide: 'MONGODB_DATA_SOURCE',
     inject: [ConfigService], // url地地址 用户名，
     useFactory: async (configService: ConfigService) => {
-      console.log('开始连接 mongodb 数据库');
+      console.log('开始连接 mongodb 数据库')
       const config = {
         type: databaseType,
         url: configService.get<string>('database.url'),
@@ -20,11 +20,11 @@ export const DatabaseProviders = [
         logging: configService.get<boolean>('database.logging'),
         synchronize: configService.get<boolean>('database.synchronize'),
         useUnifiedTopology: true,
-      };
-      const ds = new DataSource(config);
-      await ds.initialize();
-      console.log('数据库连 mongodb 接成功');
-      return ds;
+      }
+      const ds = new DataSource(config)
+      await ds.initialize()
+      console.log('数据库连 mongodb 接成功')
+      return ds
     },
   },
-];
+]

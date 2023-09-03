@@ -332,6 +332,9 @@ importers:
       class-validator:
         specifier: ^0.14.0
         version: 0.14.0
+      crypto:
+        specifier: ^1.0.1
+        version: 1.0.1
       mongodb:
         specifier: ^3.6.0
         version: 3.6.0
@@ -399,6 +402,118 @@ importers:
       source-map-support:
         specifier: ^0.5.20
         version: 0.5.20
+      supertest:
+        specifier: ^6.1.3
+        version: 6.1.3
+      ts-jest:
+        specifier: 29.0.3
+        version: 29.0.3(@babel/core@7.22.10)(jest@29.3.1)(typescript@4.7.4)
+      ts-loader:
+        specifier: ^9.2.3
+        version: 9.2.3(typescript@4.7.4)(webpack@5.88.2)
+      ts-node:
+        specifier: ^10.0.0
+        version: 10.0.0(@types/node@18.11.18)(typescript@4.7.4)
+      tsconfig-paths:
+        specifier: 4.1.1
+        version: 4.1.1
+      typescript:
+        specifier: ^4.7.4
+        version: 4.7.4
+
+  packages/server/dist:
+    dependencies:
+      '@nestjs/common':
+        specifier: ^9.0.0
+        version: 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/config':
+        specifier: ^2.3.1
+        version: 2.3.1(@nestjs/common@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/core':
+        specifier: ^9.0.0
+        version: 9.0.0(@nestjs/common@9.0.0)(@nestjs/platform-express@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/mapped-types':
+        specifier: '*'
+        version: 1.2.2(@nestjs/common@9.0.0)(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)
+      '@nestjs/platform-express':
+        specifier: ^9.0.0
+        version: 9.0.0(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
+      '@nestjs/swagger':
+        specifier: ^6.2.1
+        version: 6.2.1(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
+      class-validator:
+        specifier: ^0.14.0
+        version: 0.14.0
+      mongodb:
+        specifier: ^3.6.0
+        version: 3.6.0
+      mongoose:
+        specifier: ^7.1.0
+        version: 7.1.0
+      nest-knife4j:
+        specifier: ^1.0.1
+        version: 1.0.1(@types/express@4.17.13)(express@4.18.2)
+      reflect-metadata:
+        specifier: ^0.1.13
+        version: 0.1.13
+      rxjs:
+        specifier: ^7.2.0
+        version: 7.8.1
+      typeorm:
+        specifier: 0.3.11
+        version: 0.3.11(mongodb@3.6.0)(ts-node@10.0.0)
+      winston:
+        specifier: ^3.8.2
+        version: 3.8.2
+    devDependencies:
+      '@nestjs/cli':
+        specifier: ^9.0.0
+        version: 9.0.0
+      '@nestjs/schematics':
+        specifier: ^9.0.0
+        version: 9.0.0(chokidar@3.5.3)(typescript@4.7.4)
+      '@nestjs/testing':
+        specifier: ^9.0.0
+        version: 9.0.0(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)(@nestjs/platform-express@9.0.0)
+      '@types/express':
+        specifier: ^4.17.13
+        version: 4.17.13
+      '@types/jest':
+        specifier: 29.2.4
+        version: 29.2.4
+      '@types/node':
+        specifier: 18.11.18
+        version: 18.11.18
+      '@types/supertest':
+        specifier: ^2.0.11
+        version: 2.0.11
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.0.0
+        version: 5.4.0(@typescript-eslint/parser@5.4.0)(eslint@8.45.0)(typescript@4.7.4)
+      '@typescript-eslint/parser':
+        specifier: ^5.0.0
+        version: 5.4.0(eslint@8.45.0)(typescript@4.7.4)
+      eslint:
+        specifier: ^8.0.1
+        version: 8.45.0
+      eslint-config-prettier:
+        specifier: ^8.3.0
+        version: 8.3.0(eslint@8.45.0)
+      eslint-plugin-prettier:
+        specifier: ^4.0.0
+        version: 4.0.0(eslint-config-prettier@8.3.0)(eslint@8.45.0)(prettier@2.8.8)
+      jest:
+        specifier: 29.3.1
+        version: 29.3.1(@types/node@18.11.18)(ts-node@10.0.0)
+      prettier:
+        specifier: ^2.3.2
+        version: 2.8.8
+      source-map-support:
+        specifier: ^0.5.20
+        version: 0.5.21
       supertest:
         specifier: ^6.1.3
         version: 6.1.3
@@ -2712,6 +2827,31 @@ packages:
       tslib: 2.4.0
       uuid: 8.3.2
 
+  /@nestjs/common@9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1):
+    resolution: {integrity: sha512-dyAd48ux/eFYj1uEnQAisSVWq54ttEfeHJBDljvAc6hXbBNHTzZfq/fUH6DmlK29WdGXNMVabCjfduwX2EPquQ==}
+    peerDependencies:
+      cache-manager: '*'
+      class-transformer: '*'
+      class-validator: '*'
+      reflect-metadata: ^0.1.12
+      rxjs: ^7.1.0
+    peerDependenciesMeta:
+      cache-manager:
+        optional: true
+      class-transformer:
+        optional: true
+      class-validator:
+        optional: true
+    dependencies:
+      class-transformer: 0.5.1
+      class-validator: 0.14.0
+      iterare: 1.2.1
+      reflect-metadata: 0.1.13
+      rxjs: 7.8.1
+      tslib: 2.4.0
+      uuid: 8.3.2
+    dev: false
+
   /@nestjs/config@2.3.1(@nestjs/common@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.2.0):
     resolution: {integrity: sha512-Ckzel0NZ9CWhNsLfE1hxfDuxJuEbhQvGxSlmZ1/X8awjRmAA/g3kT6M1+MO1SHj1wMtPyUfd9WpwkiqFbiwQgA==}
     peerDependencies:
@@ -2725,6 +2865,22 @@ packages:
       lodash: 4.17.21
       reflect-metadata: 0.1.13
       rxjs: 7.2.0
+      uuid: 9.0.0
+    dev: false
+
+  /@nestjs/config@2.3.1(@nestjs/common@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Ckzel0NZ9CWhNsLfE1hxfDuxJuEbhQvGxSlmZ1/X8awjRmAA/g3kT6M1+MO1SHj1wMtPyUfd9WpwkiqFbiwQgA==}
+    peerDependencies:
+      '@nestjs/common': ^7.0.0 || ^8.0.0 || ^9.0.0
+      reflect-metadata: ^0.1.13
+      rxjs: ^6.0.0 || ^7.2.0
+    dependencies:
+      '@nestjs/common': 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      dotenv: 16.0.3
+      dotenv-expand: 10.0.0
+      lodash: 4.17.21
+      reflect-metadata: 0.1.13
+      rxjs: 7.8.1
       uuid: 9.0.0
     dev: false
 
@@ -2760,6 +2916,39 @@ packages:
     transitivePeerDependencies:
       - encoding
 
+  /@nestjs/core@9.0.0(@nestjs/common@9.0.0)(@nestjs/platform-express@9.0.0)(reflect-metadata@0.1.13)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Ib25JrYQf5ICro19FBytoMpMQicanC4HG3goPBSqsolu+AhVzSU0OhDwmmiDy3aHgmheFnNEEdUH+Gh5Rm2cNw==}
+    requiresBuild: true
+    peerDependencies:
+      '@nestjs/common': ^9.0.0
+      '@nestjs/microservices': ^9.0.0
+      '@nestjs/platform-express': ^9.0.0
+      '@nestjs/websockets': ^9.0.0
+      reflect-metadata: ^0.1.12
+      rxjs: ^7.1.0
+    peerDependenciesMeta:
+      '@nestjs/microservices':
+        optional: true
+      '@nestjs/platform-express':
+        optional: true
+      '@nestjs/websockets':
+        optional: true
+    dependencies:
+      '@nestjs/common': 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
+      '@nestjs/platform-express': 9.0.0(@nestjs/common@9.0.0)(@nestjs/core@9.0.0)
+      '@nuxtjs/opencollective': 0.3.2
+      fast-safe-stringify: 2.1.1
+      iterare: 1.2.1
+      object-hash: 3.0.0
+      path-to-regexp: 3.2.0
+      reflect-metadata: 0.1.13
+      rxjs: 7.8.1
+      tslib: 2.4.0
+      uuid: 8.3.2
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /@nestjs/mapped-types@0.0.1(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13):
     resolution: {integrity: sha512-4G4Ui7Sj0UqXiZsUFk/6cPD3K7uZEFSElzkOftaJ3/lXW+HUi1/vfWXabF53qrzO1enTRQDxt1plDbP6SsqXEg==}
     peerDependencies:
@@ -2785,7 +2974,7 @@ packages:
       class-validator:
         optional: true
     dependencies:
-      '@nestjs/common': 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.2.0)
+      '@nestjs/common': 9.0.0(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)(rxjs@7.8.1)
       class-transformer: 0.5.1
       class-validator: 0.14.0
       reflect-metadata: 0.1.13
@@ -6557,6 +6746,11 @@ packages:
       which: 2.0.2
     dev: true
 
+  /crypto@1.0.1:
+    resolution: {integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==}
+    deprecated: This package is no longer supported. It's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.
+    dev: false
+
   /css-color-keywords@1.0.0:
     resolution: {integrity: sha512-FyyrDHZKEjXDpNJYvVsV960FiqQyXc/LlYmsxl2BcdMb2WPx0OGRVgTg55rPSyLSNMqP52R9r8geSp7apN3Ofg==}
     engines: {node: '>=4'}
@@ -7470,6 +7664,23 @@ packages:
       eslint: 8.45.0
       eslint-config-prettier: 8.3.0(eslint@8.45.0)
       prettier: 2.4.1
+      prettier-linter-helpers: 1.0.0
+    dev: true
+
+  /eslint-plugin-prettier@4.0.0(eslint-config-prettier@8.3.0)(eslint@8.45.0)(prettier@2.8.8):
+    resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
+    engines: {node: '>=6.0.0'}
+    peerDependencies:
+      eslint: '>=7.28.0'
+      eslint-config-prettier: '*'
+      prettier: '>=2.0.0'
+    peerDependenciesMeta:
+      eslint-config-prettier:
+        optional: true
+    dependencies:
+      eslint: 8.45.0
+      eslint-config-prettier: 8.3.0(eslint@8.45.0)
+      prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -12159,7 +12370,6 @@ packages:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
       tslib: 2.6.2
-    dev: true
 
   /safe-array-concat@1.0.0:
     resolution: {integrity: sha512-9dVEFruWIsnie89yym+xWTAYASdpw3CJV7Li/6zBewGf9z2i1j31rP6jnY0pHEO4QZh6N0K11bFjWmdR8UGdPQ==}
@@ -13078,7 +13288,7 @@ packages:
       '@jridgewell/source-map': 0.3.5
       acorn: 8.10.0
       commander: 2.20.3
-      source-map-support: 0.5.20
+      source-map-support: 0.5.21
     dev: true
 
   /test-exclude@6.0.0:

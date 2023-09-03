@@ -5,23 +5,23 @@ import {
   ObjectIdColumn,
   UpdateDateColumn,
   VersionColumn,
-} from 'typeorm';
+} from 'typeorm'
 
 export abstract class Common {
   @ObjectIdColumn()
-  _id: ObjectID;
+  _id: ObjectID
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt: Date
   @Column({
     default: false,
     select: false,
   })
-  isDelete: boolean;
+  isDelete: boolean
   @VersionColumn({
     select: false,
   })
-  version: number; //本条记录被更新的次数
+  version: number //本条记录被更新的次数
 }

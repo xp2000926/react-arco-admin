@@ -9,4 +9,4 @@ export default (): any => ({
     synchronize: process.env.DB_SYNCHRONIZE,
     logging: process.env.DB_LOGGING,
   },
-});
+})

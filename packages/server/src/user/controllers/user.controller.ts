@@ -9,18 +9,18 @@ import {
   HttpStatus,
   HttpException,
   Query,
-} from '@nestjs/common';
-import { UserService } from '../services/user.service';
-import { CreateUserDto } from '../dtos/create-user.dto';
-import { UpdateUserDto } from '../dtos/update-user.dto';
+} from '@nestjs/common'
+import { UserService } from '../services/user.service'
+import { CreateUserDto } from '../dtos/create-user.dto'
+import { UpdateUserDto } from '../dtos/update-user.dto'
 import {
   ApiBasicAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
-} from '@nestjs/swagger';
-import { ConfigService } from '@nestjs/config';
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto';
+} from '@nestjs/swagger'
+import { ConfigService } from '@nestjs/config'
+import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
 
 @Controller('user')
 @ApiTags('用户管理')
@@ -45,7 +45,7 @@ export class UserController {
     // throw '异常' // 异常
     // throw new HttpException('自定义异常', HttpStatus.CONFLICT); // 抛出异常
     // console.log('环境变量：', this.configService.get<string>('database.url'));
-    return this.userService.create(createUserDto);
+    return this.userService.create(createUserDto)
   }
   //  GET: /user
   @Get()
@@ -57,14 +57,14 @@ export class UserController {
     type: CreateUserDto,
   })
   async findAll(@Query() query: PaginationParamsDto) {
-    console.log('query', query);
-    const { data, total } = await this.userService.findAll(query);
+    console.log('query', query)
+    const { data, total } = await this.userService.findAll(query)
     return {
       data,
       meta: {
         total,
       },
-    };
+    }
   }
   // GET:  /user/:id
   // GET:  /user/123
@@ -77,7 +77,7 @@ export class UserController {
     type: CreateUserDto,
   })
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(id);
+    return this.userService.findOne(id)
   }
   // PATCH:  /user/:id
   // PATCH:  /users/123
@@ -90,7 +90,7 @@ export class UserController {
     type: CreateUserDto,
   })
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(id, updateUserDto);
+    return this.userService.update(id, updateUserDto)
   }
   // DELETE:  /user/:id
   // DELETE:  /user/123
@@ -102,6 +102,6 @@ export class UserController {
     status: HttpStatus.NO_CONTENT,
   })
   remove(@Param('id') id: string) {
-    return this.userService.remove(id);
+    return this.userService.remove(id)
   }
 }

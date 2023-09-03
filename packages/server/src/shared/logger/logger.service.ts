@@ -1,10 +1,10 @@
-import { createLogger, format, Logger, transports } from 'winston';
+import { createLogger, format, Logger, transports } from 'winston'
 
 export class AppLogger {
-  private context?: string;
-  private logger: Logger;
+  private context?: string
+  private logger: Logger
   public setContext(context: string): void {
-    this.context = context;
+    this.context = context
   }
   constructor() {
     this.logger = createLogger({
@@ -18,7 +18,7 @@ export class AppLogger {
         new transports.File({ filename: 'logs/combined.log' }),
         new transports.Console(),
       ],
-    });
+    })
   }
   error(ctx: any, message: string, meta?: Record<string, any>): Logger {
     return this.logger.error({
@@ -26,7 +26,7 @@ export class AppLogger {
       contextName: this.context,
       ctx,
       ...meta,
-    });
+    })
   }
   warn(ctx: any, message: string, meta?: Record<string, any>): Logger {
     return this.logger.warn({
@@ -34,7 +34,7 @@ export class AppLogger {
       contextName: this.context,
       ctx,
       ...meta,
-    });
+    })
   }
 
   debug(ctx: any, message: string, meta?: Record<string, any>): Logger {
@@ -43,7 +43,7 @@ export class AppLogger {
       contextName: this.context,
       ctx,
       ...meta,
-    });
+    })
   }
 
   info(ctx: any, message: string, meta?: Record<string, any>): Logger {
@@ -52,6 +52,6 @@ export class AppLogger {
       contextName: this.context,
       ctx,
       ...meta,
-    });
+    })
   }
 }

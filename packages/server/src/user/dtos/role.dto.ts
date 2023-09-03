@@ -1,11 +1,11 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty } from 'class-validator';
-import { IdDTO } from '../../shared/dtos/id.dto';
+import { ApiProperty } from '@nestjs/swagger'
+import { IsNotEmpty } from 'class-validator'
+import { IdDTO } from '../../shared/dtos/id.dto'
 
 export class CreateRoleDto extends IdDTO {
   @ApiProperty({ example: 'admin', description: '角色名' })
   @IsNotEmpty()
-  name: string;
+  name: string
 
   @ApiProperty({
     example: {
@@ -17,5 +17,5 @@ export class CreateRoleDto extends IdDTO {
     description: '权限',
   })
   @IsNotEmpty()
-  permissions: object;
+  permissions: object
 }
