@@ -13,8 +13,8 @@ export class AuthService {
     @Inject('USER_REPOSITORY')
     private userRepository: MongoRepository<User>,
     @Inject('ROLE_REPOSITORY')
-    private roleRepository: MongoRepository<Role>
-  ) { }
+    private roleRepository: MongoRepository<Role>,
+  ) {}
   async certificate(user: User) {
     const payload = {
       id: user._id,
@@ -28,10 +28,9 @@ export class AuthService {
     if (!user) {
       throw new NotFoundException('用户不存在')
     }
-    console.log('user', user)
     const { password: dbPassword, salt } = user
     const currentHashPassword = encryptPassword(password, salt)
-    console.log({ currentHashPassword, dbPassword })
+    // console.log({ currentHashPassword, dbPassword })
     if (currentHashPassword !== dbPassword) {
       throw new NotFoundException('用户或密码错误')
     }

@@ -28,4 +28,4 @@ import { JwtStrategy } from './strategies/jwt.strategy'
     SharedModule,
   ],
 })
-export class UserModule { }
+export class UserModule {}

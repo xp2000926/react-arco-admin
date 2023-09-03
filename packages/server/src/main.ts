@@ -4,6 +4,7 @@ import { AppModule } from './app.module'
 import { generateDocument } from './doc'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { join } from 'path'
+import { RemoveSensitiveInfoInterceptor } from './shared/interceptors/remove-sensitive-info.interceptor'
 const port = 4000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
@@ -14,6 +15,7 @@ async function bootstrap() {
     !!process.env.UPLOAD_DIR && process.env.UPLOAD_DIR !== ''
       ? process.env.UPLOAD_DIR
       : join(__dirname, '..', 'static/upload')
+  app.useGlobalInterceptors(new RemoveSensitiveInfoInterceptor())
   // 静态服务
   app.useStaticAssets(uploadDir, {
     prefix: '/static/upload',

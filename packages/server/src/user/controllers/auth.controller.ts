@@ -25,7 +25,7 @@ import { UserInfoDto } from '../dtos/auth.dto'
 @ApiTags('认证鉴权')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   @ApiOperation({
     summary: '用户登录',
@@ -59,8 +59,8 @@ export class AuthController {
   @UseGuards(AuthGuard('jwt'))
   async info(@Req() req: any): Promise<any> {
     const data = await this.authService.info(req.user.id)
-    delete data.password
-    delete data.salt
+    // delete data.password
+    // delete data.salt
     return { data }
   }
 }
