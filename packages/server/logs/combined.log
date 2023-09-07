@@ -557,3 +557,80 @@
   level: 'info',
   timestamp: '2023-09-03T15:39:48.448Z'
 }
+{
+  message: '图形验证码:cK5h',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T01:52:53.679Z'
+}
+{
+  message: '图形验证码:TRBL',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T01:55:02.339Z'
+}
+{
+  message: '图形验证码:gaSu',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:05:15.921Z'
+}
+{
+  message: '图形验证码:3Ztv',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:05:27.608Z'
+}
+{
+  message: '图形验证码:Lwrp',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:05:38.655Z'
+}
+{
+  message: '图形验证码:aCEU',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:06:50.652Z'
+}
+{
+  message: '图形验证码:3TUR',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:07:21.870Z'
+}
+{
+  message: '图形验证码:7g7X',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:07:44.860Z'
+}
+{
+  message: '图形验证码:yj5j',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:08:33.918Z'
+}
+{
+  message: '图形验证码:SAYs',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-04T02:09:34.684Z'
+}
+{
+  message: '图形验证码:M972',
+  contextName: 'UserService',
+  ctx: null,
+  level: 'info',
+  timestamp: '2023-09-07T13:04:54.189Z'
+}

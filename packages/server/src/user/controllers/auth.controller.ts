@@ -20,7 +20,7 @@ import {
 } from 'src/shared/dtos/base-api-response.dto'
 import { LoginDTO } from '../dtos/login.dto'
 import { AuthService } from '../services/auth.service'
-import { RegisterCodeDTO, UserInfoDto } from '../dtos/auth.dto'
+import { RegisterCodeDTO, RegisterSMSDTO, UserInfoDto } from '../dtos/auth.dto'
 
 @ApiTags('认证鉴权')
 @Controller('auth')
@@ -93,5 +93,21 @@ export class AuthController {
     return {
       data,
     }
+  }
+
+  @ApiOperation({
+    summary: '短信用户注册/登录',
+  })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: SwaggerBaseApiResponse(RegisterSMSDTO),
+  })
+  @ApiResponse({
+    status: HttpStatus.NOT_FOUND,
+    type: BaseApiErrorResponse,
+  })
+  @Post('registerBySMS')
+  async registerBySMS(@Body() registerDTO: RegisterSMSDTO): Promise<any> {
+    return this.authService.registerBySMS(registerDTO)
   }
 }

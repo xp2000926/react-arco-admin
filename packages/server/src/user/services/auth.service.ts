@@ -4,11 +4,17 @@ import { User } from '../entities/user.mongo.entity'
 import { Inject, NotFoundException } from '@nestjs/common'
 import { MongoRepository } from 'typeorm'
 import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
-import { RegisterCodeDTO, UserInfoDto } from '../dtos/auth.dto'
+import {
+  RegisterCodeDTO,
+  RegisterDTO,
+  RegisterSMSDTO,
+  UserInfoDto,
+} from '../dtos/auth.dto'
 import { Role } from '../entities/role.mongo.entity'
 import { InjectRedis, Redis } from '@nestjs-modules/ioredis'
 import { AppLogger } from 'src/shared/logger/logger.service'
 import { CaptchaService } from 'src/shared/captcha/captcha.service'
+import { UserService } from './user.service'
 
 export class AuthService {
   constructor(
@@ -21,6 +27,7 @@ export class AuthService {
     private readonly redis: Redis,
     private readonly logger: AppLogger,
     private readonly captchaService: CaptchaService,
+    private userService: UserService,
   ) {}
   async certificate(user: User) {
     const payload = {
@@ -66,10 +73,17 @@ export class AuthService {
   }
   /**
    * 获取短信验证码
-   
    */
   async registerCode(dto: RegisterCodeDTO) {
-    const { phoneNumber } = dto
+    const { phoneNumber, captchaCode, captchaId } = dto
+    // 验证图形验证码
+    const captcha = await this.redis.get('captcha' + captchaId)
+    if (
+      !captcha ||
+      captcha.toLocaleLowerCase() !== captchaCode.toLocaleLowerCase()
+    ) {
+      throw new NotFoundException('图形验证码错误')
+    }
     const rediscode = await this.redis.get('verifyCode' + phoneNumber)
     if (rediscode !== null) {
       // 验证码未过期
@@ -101,5 +115,72 @@ export class AuthService {
       'base64',
     )}`
     return { id, image }
+  }
+
+  /**
+   * 短信注册
+   * @param {RegisterSMSDTO} registerDTO
+   */
+  async registerBySMS(registerDTO: RegisterSMSDTO): Promise<any> {
+    const { phoneNumber, smsCode } = registerDTO
+    // 短信验证码校验
+    const code = await this.redis.get('verifyCode' + phoneNumber)
+    if (smsCode !== code) {
+      throw new NotFoundException('验证码不一致，或已过期')
+    }
+    let user = await this.userRepository.findOneBy({ phoneNumber })
+    if (!user) {
+      // 新用户注册
+      const password = makeSalt(8)
+      user = await this.register({
+        phoneNumber,
+        name: `手机用户${makeSalt(8)}`,
+        password,
+        passwordRepeat: password,
+      })
+    }
+    const token = await this.certificate(user)
+    return {
+      data: {
+        token,
+      },
+    }
+  }
+  /**
+   *
+   * @param {RegisterDTO} registerDTO
+   */
+  async register(registerDTO: RegisterDTO): Promise<any> {
+    // 校验用户注册信息
+    await this.checkRegisterForm(registerDTO)
+    const { name, password, phoneNumber } = registerDTO
+    // 产生一个新密码
+    const { salt, hashPassword } = this.userService.getPassword(password)
+    const newUser: User = new User()
+    newUser.name = name
+    newUser.phoneNumber = phoneNumber
+    newUser.password = hashPassword
+    newUser.salt = salt
+    const data = await this.userRepository.save(newUser)
+    return {
+      data,
+    }
+  }
+  /**
+   * 校验注册信息
+   * @param {RegisterDTO} registerDTO
+   */
+  async checkRegisterForm({
+    password,
+    passwordRepeat,
+    phoneNumber,
+  }: RegisterDTO) {
+    if (password !== passwordRepeat) {
+      throw new NotFoundException('两次输入的密码不一致，请检查')
+    }
+    const hasUser = await this.userRepository.findOneBy({ phoneNumber })
+    if (hasUser) {
+      throw new NotFoundException('用户已存在')
+    }
   }
 }

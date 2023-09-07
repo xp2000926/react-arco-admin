@@ -17,13 +17,6 @@ export class RegisterSMSDTO {
   @IsNotEmpty({ message: '请输入验证码' })
   @ApiProperty({ example: '0000' })
   readonly smsCode: string
-
-  /**
-   * 图形验证码
-   */
-  @IsNotEmpty({ message: '请输入图形验证码' })
-  @ApiProperty({ example: '0000' })
-  readonly verifyCode: string
 }
 
 export class RegisterCodeDTO {
