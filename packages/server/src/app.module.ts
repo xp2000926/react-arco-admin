@@ -3,9 +3,10 @@ import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { UserModule } from './user/user.module'
 import { CorsMiddleware } from './cors.middleware'
+import { CMSModule } from './cms/cms.module'
 
 @Module({
-  imports: [UserModule],
+  imports: [UserModule, CMSModule],
   controllers: [AppController],
   providers: [AppService],
 })
