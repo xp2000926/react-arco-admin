@@ -5,8 +5,8 @@ import {
   Post,
   UseGuards,
   HttpStatus,
-  Delete,
-  Param,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common'
 import { MenuService } from '../services/menu.service'
 
@@ -15,6 +15,7 @@ import {
   ApiTags,
   ApiResponse,
   ApiBearerAuth,
+  ApiConsumes,
 } from '@nestjs/swagger'
 
 import {
@@ -24,11 +25,13 @@ import {
 
 import { CreateMenuDto, UpdateMenuDto } from '../dtos/menu.dto'
 import { AuthGuard } from '@nestjs/passport'
+import { FileInterceptor } from '@nestjs/platform-express'
+import { UploadDTO } from 'src/user/dtos/upload.dto'
 
 @ApiTags('菜单')
 @Controller('menus')
 export class MenuController {
-  constructor(private readonly menuService: MenuService) { }
+  constructor(private readonly menuService: MenuService) {}
 
   @ApiOperation({
     summary: '新增菜单',
@@ -69,13 +72,19 @@ export class MenuController {
     }
   }
 
-  // @Delete(':id')
-  // @ApiOperation({
-  //   summary: '删除菜单',
-  // })
-  // @ApiBearerAuth()
-  // @UseGuards(AuthGuard('jwt'))
-  // remove(@Param('id') id: string) {
-  //   // return this.menuService.remove(id)
-  // }
+  @ApiOperation({
+    summary: '文章导入',
+  })
+  @Post('/article/import')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  async articleImport(@UploadedFile() file, @Body() uploadDTO: UploadDTO) {
+    // 执行上传
+    this.menuService.import(file)
+    return {
+      ok: 1,
+    }
+  }
 }

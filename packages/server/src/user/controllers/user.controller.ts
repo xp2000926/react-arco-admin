@@ -113,7 +113,7 @@ export class UserController {
   remove(@Param('id') id: string) {
     return this.userService.remove(id)
   }
-  
+
   @Post('upload')
   @ApiOperation({
     summary: '上传头像',
