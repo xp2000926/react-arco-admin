@@ -23,4 +23,4 @@ export class CreateMenuDto {
   menus: any[]
 }
 
-export class UpdateMenuDto extends PartialType(CreateMenuDto) { }
+export class UpdateMenuDto extends PartialType(CreateMenuDto) {}

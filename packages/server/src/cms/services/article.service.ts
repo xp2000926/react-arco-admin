@@ -3,13 +3,15 @@ import { MongoRepository } from 'typeorm'
 import { Article } from '../entities/article.mongo.entity'
 import { PaginationParamsDto } from '../../shared/dtos/pagination-params.dto'
 import { CreateArticleDto, UpdateArticleDto } from '../dtos/article.dto'
-
+import { ConfigService } from '@nestjs/config'
+import * as axios from "axios"
 @Injectable()
 export class ArticleService {
   constructor(
     @Inject('ARTICLE_REPOSITORY')
     private articleRepository: MongoRepository<Article>,
-  ) {}
+    private configService: ConfigService,
+  ) { }
 
   async create(course: CreateArticleDto) {
     const ret = await this.articleRepository.save(course)
@@ -43,11 +45,30 @@ export class ArticleService {
     const ret = await this.articleRepository.update(id, course)
 
     // TODO 暂时使用同步刷新
-    // await this.sync(id)
+    await this.sync(id)
     return ret
   }
 
   async remove(id: string): Promise<any> {
     return await this.articleRepository.delete(id)
+  }
+  /**
+   * 同步文章
+   * @param {*} id
+   */
+  async sync(id: string) {
+    const secret = this.configService.get<string>('cms.validateToken')
+    const host = this.configService.get<string>('cms.host')
+    const url = `/api/revalidate?secret=${secret}&id=${id}`
+    console.log('sync nest validate url:', host + '/' + url)
+    try {
+      console.log('url', url)
+      await axios.get(host + '/' + url)
+    } catch (error) {
+      console.log(error)
+      console.log('同步失败')
+      throw error
+    }
+    return
   }
 }

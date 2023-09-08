@@ -16,7 +16,7 @@ export class MenuService {
     private articleService: ArticleService,
     @Inject('ARTICLE_REPOSITORY')
     private articleRepository: MongoRepository<Menu>,
-  ) { }
+  ) {}
 
   async find(): Promise<{ data: object }> {
     const data = await this.MenuRepository.findOneBy({})
@@ -49,9 +49,9 @@ export class MenuService {
     await compressing.zip.uncompress(uploadFile.path, root)
     this.articleRepository.deleteMany({})
     const list = fs
-      .readdirSync(root)
-      .filter(menu => menu !== 'image')
-      .filter(menu => fs.statSync(root + '/' + menu).isDirectory()),
+        .readdirSync(root)
+        .filter(menu => menu !== 'image')
+        .filter(menu => fs.statSync(root + '/' + menu).isDirectory()),
       menus = []
     for (const menu of list) {
       menus.push(await this.importCategory(menu, root + '/' + menu))
