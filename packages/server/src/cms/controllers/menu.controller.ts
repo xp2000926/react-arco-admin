@@ -26,12 +26,11 @@ import {
 import { CreateMenuDto, UpdateMenuDto } from '../dtos/menu.dto'
 import { AuthGuard } from '@nestjs/passport'
 import { FileInterceptor } from '@nestjs/platform-express'
-import { UploadDTO } from 'src/user/dtos/upload.dto'
-
+import { spawn } from 'child_process'
 @ApiTags('菜单')
 @Controller('menus')
 export class MenuController {
-  constructor(private readonly menuService: MenuService) {}
+  constructor(private readonly menuService: MenuService) { }
 
   @ApiOperation({
     summary: '新增菜单',
@@ -80,11 +79,41 @@ export class MenuController {
   @UseInterceptors(FileInterceptor('file'))
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
-  async articleImport(@UploadedFile() file, @Body() uploadDTO: UploadDTO) {
+  async articleImport(@UploadedFile() file) {
     // 执行上传
     this.menuService.import(file)
     return {
       ok: 1,
     }
+  }
+
+  @ApiOperation({
+    summary: '刷新全部内容',
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Post('refresh')
+  async refresh() {
+    console.log('刷新全部内容...')
+    // 支持 await
+    // 日志流的对接
+    const log = await this.spawns('ls', ['-l'], { cwd: './' })
+    return {
+      ok: 1,
+      log,
+    }
+  }
+  async spawns(cmd, ...args) {
+    return new Promise(res => {
+      const child = spawn(cmd, ...args)
+      // 日志流的对接
+      child.stdout.pipe(process.stdout) //终端正常流
+      child.stderr.pipe(process.stderr) //终端异常流
+      let ret = ''
+      child.stdout.on('data', data => {
+        ret += data.toString()
+      })
+      child.on('close', () => res(ret))
+    })
   }
 }

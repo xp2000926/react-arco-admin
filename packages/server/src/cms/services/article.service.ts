@@ -4,14 +4,14 @@ import { Article } from '../entities/article.mongo.entity'
 import { PaginationParamsDto } from '../../shared/dtos/pagination-params.dto'
 import { CreateArticleDto, UpdateArticleDto } from '../dtos/article.dto'
 import { ConfigService } from '@nestjs/config'
-import * as axios from "axios"
+import axios from 'axios'
 @Injectable()
 export class ArticleService {
   constructor(
     @Inject('ARTICLE_REPOSITORY')
     private articleRepository: MongoRepository<Article>,
     private configService: ConfigService,
-  ) { }
+  ) {}
 
   async create(course: CreateArticleDto) {
     const ret = await this.articleRepository.save(course)
