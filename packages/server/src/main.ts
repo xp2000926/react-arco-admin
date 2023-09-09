@@ -5,10 +5,12 @@ import { generateDocument } from './doc'
 import { NestExpressApplication } from '@nestjs/platform-express'
 import { join } from 'path'
 import { RemoveSensitiveInfoInterceptor } from './shared/interceptors/remove-sensitive-info.interceptor'
+import helmet from 'helmet'
+
 const port = 4000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
-
+  app.use(helmet({}))
   // 添加全局管道(数据校验)
   app.useGlobalPipes(new ValidationPipe({ forbidUnknownValues: false }))
   const uploadDir =
