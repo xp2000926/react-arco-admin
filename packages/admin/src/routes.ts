@@ -13,18 +13,24 @@ export type IRoute = AuthParams & {
 
 export const routes: IRoute[] = [
   {
-    name: 'menu.dashboard',
-    key: 'dashboard',
+    name: 'menu.dashboard',//菜单名， locale包中的 key 值：locale['menu.dashboard']
+    key: 'dashboard',//菜单项 key，唯一区分菜单项，也是路由path，决定icon
     children: [
       {
         name: 'menu.dashboard.workplace',
         key: 'dashboard/workplace',
       },
     ],
+    // breadcrumb: true,       // 是否显示在面包屑中
+    // ignore: true  // 是否渲染为菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问
   },
   {
     name: 'Example',
     key: 'example',
+  },
+  {
+    name: 'menu.user',
+    key: 'user',
   },
 ];
 
