@@ -6,11 +6,19 @@ import { NestExpressApplication } from '@nestjs/platform-express'
 import { join } from 'path'
 import { RemoveSensitiveInfoInterceptor } from './shared/interceptors/remove-sensitive-info.interceptor'
 import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 
 const port = 4000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.use(helmet({}))
+  app.use(
+    rateLimit({
+      windowMs: 15 * 60 * 1000, // 15 分钟
+      max: 100, //15分钟最低分为100次
+    }),
+  )
+
   // 添加全局管道(数据校验)
   app.useGlobalPipes(new ValidationPipe({ forbidUnknownValues: false }))
   const uploadDir =

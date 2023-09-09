@@ -36,6 +36,7 @@
     "class-validator": "^0.14.0",
     "compressing": "^1.10.0",
     "crypto": "^1.0.1",
+    "express-rate-limit": "^6.11.0",
     "fs-extra": "^11.1.1",
     "helmet": "^7.0.0",
     "moment": "^2.29.4",
