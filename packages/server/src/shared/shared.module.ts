@@ -6,8 +6,10 @@ import { ConfigModule } from '@nestjs/config'
 import { DatabaseProviders } from './database.providers'
 import { UploadService } from './upload/upload.service'
 import { CaptchaService } from './captcha/captcha.service'
+import { SystemController } from './controllers/system.controller'
 
 @Module({
+  controllers: [SystemController],
   exports: [
     SystemService,
     ConfigModule,

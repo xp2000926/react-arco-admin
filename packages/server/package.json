@@ -37,6 +37,7 @@
     "compressing": "^1.10.0",
     "crypto": "^1.0.1",
     "fs-extra": "^11.1.1",
+    "moment": "^2.29.4",
     "mongodb": "^3.6.0",
     "mongoose": "^7.1.0",
     "nest-knife4j": "^1.0.1",

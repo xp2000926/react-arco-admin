@@ -30,7 +30,7 @@ import { spawn } from 'child_process'
 @ApiTags('菜单')
 @Controller('menus')
 export class MenuController {
-  constructor(private readonly menuService: MenuService) { }
+  constructor(private readonly menuService: MenuService) {}
 
   @ApiOperation({
     summary: '新增菜单',
@@ -97,13 +97,13 @@ export class MenuController {
     console.log('刷新全部内容...')
     // 支持 await
     // 日志流的对接
-    const log = await this.spawns('ls', ['-l'], { cwd: './' })
+    const log = await this.spawn('ls', ['-l'], { cwd: './' })
     return {
       ok: 1,
       log,
     }
   }
-  async spawns(cmd, ...args) {
+  async spawn(cmd, ...args) {
     return new Promise(res => {
       const child = spawn(cmd, ...args)
       // 日志流的对接
