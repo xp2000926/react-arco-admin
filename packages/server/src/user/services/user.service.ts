@@ -5,9 +5,9 @@ import { CreateUserDto } from '../dtos/create-user.dto'
 import { Inject, Injectable } from '@nestjs/common'
 import { User } from '../entities/user.mongo.entity'
 import { UpdateUserDto } from '../dtos/update-user.dto'
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
-import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
-import { UploadService } from 'src/shared/upload/upload.service'
+import { PaginationParamsDto } from '@/shared/dtos/pagination-params.dto'
+import { encryptPassword, makeSalt } from '@/shared/utils/cryptogram.util'
+import { UploadService } from '@/shared/upload/upload.service'
 
 @Injectable()
 export class UserService {

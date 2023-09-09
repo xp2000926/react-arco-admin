@@ -25,11 +25,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger'
 import { ConfigService } from '@nestjs/config'
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
+import { PaginationParamsDto } from '@/shared/dtos/pagination-params.dto'
 import { UploadDTO } from '../dtos/upload.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { encryptFileMD5 } from 'src/shared/utils/cryptogram.util'
+import { encryptFileMD5 } from '@/shared/utils/cryptogram.util'
 
 @Controller('user')
 @ApiTags('用户管理')

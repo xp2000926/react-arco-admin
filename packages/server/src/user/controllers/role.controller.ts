@@ -17,11 +17,11 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger'
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
+import { PaginationParamsDto } from '@/shared/dtos/pagination-params.dto'
 import {
   BaseApiErrorResponse,
   SwaggerBaseApiResponse,
-} from 'src/shared/dtos/base-api-response.dto'
+} from '@/shared/dtos/base-api-response.dto'
 @ApiTags('角色')
 @Controller('role')
 export class RoleController {

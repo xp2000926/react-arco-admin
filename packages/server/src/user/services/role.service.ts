@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common'
 import { MongoRepository } from 'typeorm'
 import { Role } from '../entities/role.mongo.entity'
 import { CreateRoleDto } from '../dtos/role.dto'
-import { PaginationParamsDto } from 'src/shared/dtos/pagination-params.dto'
+import { PaginationParamsDto } from '@/shared/dtos/pagination-params.dto'
 
 @Injectable()
 export class RoleService {

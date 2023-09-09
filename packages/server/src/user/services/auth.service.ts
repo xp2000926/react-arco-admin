@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt'
 import { User } from '../entities/user.mongo.entity'
 import { Inject, NotFoundException } from '@nestjs/common'
 import { MongoRepository } from 'typeorm'
-import { encryptPassword, makeSalt } from 'src/shared/utils/cryptogram.util'
+import { encryptPassword, makeSalt } from '@/shared/utils/cryptogram.util'
 import {
   RegisterCodeDTO,
   RegisterDTO,
@@ -12,8 +12,8 @@ import {
 } from '../dtos/auth.dto'
 import { Role } from '../entities/role.mongo.entity'
 import { InjectRedis, Redis } from '@nestjs-modules/ioredis'
-import { AppLogger } from 'src/shared/logger/logger.service'
-import { CaptchaService } from 'src/shared/captcha/captcha.service'
+import { AppLogger } from '@/shared/logger/logger.service'
+import { CaptchaService } from '@/shared/captcha/captcha.service'
 import { UserService } from './user.service'
 
 export class AuthService {

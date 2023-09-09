@@ -1,6 +1,6 @@
 import { IsNotEmpty, Matches } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
-import { regMobileCN } from 'src/shared/utils/regex.util'
+import { regMobileCN } from '@/shared/utils/regex.util'
 
 export class LoginDTO {
   /**
