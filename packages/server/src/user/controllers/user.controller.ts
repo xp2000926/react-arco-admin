@@ -13,6 +13,7 @@ import {
   Req,
   UseInterceptors,
   UploadedFile,
+  UseGuards,
 } from '@nestjs/common'
 import { UserService } from '../services/user.service'
 import { CreateUserDto } from '../dtos/create-user.dto'
@@ -30,6 +31,7 @@ import { UploadDTO } from '../dtos/upload.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { encryptFileMD5 } from '@/shared/utils/cryptogram.util'
+import { AuthGuard } from '@nestjs/passport'
 
 @Controller('user')
 @ApiTags('用户管理')
@@ -38,7 +40,7 @@ export class UserController {
     private readonly userService: UserService,
     // 注入环境变量
     private readonly configService: ConfigService,
-  ) {}
+  ) { }
 
   // Post： /user
   @Post()
@@ -50,6 +52,7 @@ export class UserController {
     type: CreateUserDto,
   })
   @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() createUserDto: CreateUserDto) {
     // throw '异常' // 异常
     // throw new HttpException('自定义异常', HttpStatus.CONFLICT); // 抛出异常
@@ -65,6 +68,8 @@ export class UserController {
     status: HttpStatus.OK,
     type: CreateUserDto,
   })
+  @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt') /*,RolesGuard*/)
   async findAll(@Query() query: PaginationParamsDto) {
     console.log('query', query)
     const { data, total } = await this.userService.findAll(query)
@@ -85,6 +90,8 @@ export class UserController {
     status: HttpStatus.OK,
     type: CreateUserDto,
   })
+  @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt'))
   findOne(@Param('id') id: string) {
     return this.userService.findOne(id)
   }
@@ -98,6 +105,8 @@ export class UserController {
     status: HttpStatus.OK,
     type: CreateUserDto,
   })
+  @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt'))
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto)
   }
@@ -110,6 +119,8 @@ export class UserController {
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
   })
+  @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt'))
   remove(@Param('id') id: string) {
     return this.userService.remove(id)
   }
@@ -123,6 +134,8 @@ export class UserController {
   })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
+  @ApiBasicAuth() //鉴权
+  @UseGuards(AuthGuard('jwt'))
   async upload(
     @Req() req: any,
     @Body() uploadDto: UploadDTO,

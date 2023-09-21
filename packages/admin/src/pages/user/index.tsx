@@ -1,8 +1,99 @@
 import React from 'react';
-import { Button, Card, Space, Typography } from '@arco-design/web-react';
+import {
+  Button,
+  Card,
+  Space,
+  Typography,
+  Table,
+  Popconfirm,
+  Message,
+} from '@arco-design/web-react';
+import { usePagination } from 'ahooks';
 const { Title, Text } = Typography;
 
+const getTableData = async ({ current, pageSize }) => {
+  const {
+    data: list,
+    meta: { total },
+  } = await fetch(`/api/user?pageSize=${pageSize}&page=${current}`).then(
+    (res) => res.json()
+  );
+  return { list, total };
+};
+
 export default function UserPage() {
+  const { data, pagination, loading, refresh } = usePagination(getTableData, {
+    defaultCurrent: 1,
+    defaultPageSize: 2,
+  });
+  const columns = [
+    {
+      title: '手机号',
+      dataIndex: 'phoneNumber',
+    },
+    {
+      title: '用户名称',
+      dataIndex: 'name',
+    },
+    {
+      title: '用户头像',
+      dataIndex: 'avatar',
+      render(value: string) {
+        return <img src={value} width="50" />;
+      },
+    },
+    {
+      title: '邮箱',
+      dataIndex: 'email',
+      placeholder: '-',
+    },
+    {
+      title: '操作',
+      dataIndex: 'operations',
+      render: (_: unknown, record) => (
+        <>
+          <Button
+            type="text"
+            size="small"
+            onClick={() => tableCallback(record, 'edit')}
+          >
+            编辑
+          </Button>
+          <Popconfirm
+            focusLock
+            title="确认删除吗?"
+            okText="确认"
+            cancelText="取消"
+            onOk={() => tableCallback(record, 'delete')}
+          >
+            <Button type="text" size="small">
+              删除
+            </Button>
+          </Popconfirm>
+        </>
+      ),
+    },
+  ];
+  const deleteTableData = async (id: string) => {
+    const res = await fetch(`/api/user/${id}`, { method: 'delete' }).then(
+      (res) => res.json()
+    );
+    return { ok: res.affected === 1 };
+  };
+  const tableCallback = async (record, operation) => {
+    console.log('操作', operation);
+    console.log('记录', record);
+    if (operation === 'delete') {
+      const { ok } = await deleteTableData(record._id);
+      if (ok) {
+        Message.success('删除用户成功!');
+        refresh(); // 刷新
+      } else {
+        Message.error('删除用户失败,请从试!');
+      }
+    } else {
+    }
+  };
   return (
     //容器
     <Card>
@@ -11,15 +102,21 @@ export default function UserPage() {
       {/* 面包屑 */}
       {/* 过滤条件 */}
       {/* 操作暗流 */}
-      <Space direction="vertical">
+      <Space direction="vertical" style={{ width: '100%' }}>
         {/* 操作按钮 */}
         <Button type="primary" style={{ marginBottom: 10 }}>
           新增
         </Button>
         {/* 页面内容 */}
         {/* 数据表格 */}
-        {/* 分页 */}
-        <Text>User Page</Text>
+        <Table
+          data={data?.list}
+          loading={loading}
+          columns={columns}
+          pagination={pagination}
+          rowKey="_id"
+          style={{ width: '100%' }}
+        />
       </Space>
     </Card>
   );
