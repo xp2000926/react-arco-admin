@@ -1,31 +1,68 @@
 import './App.css';
-import {  Layout, Space, Button, Drawer } from '@arco-design/web-react';
-import {  useState } from 'react';
+import {
+  Layout,
+  Space,
+  Button,
+  Drawer,
+  Form,
+  Input,
+} from '@arco-design/web-react';
+import { useState } from 'react';
 const { Header, Sider, Content, Footer } = Layout;
 
 function App() {
   const [visible, setVisible] = useState(false);
+  const [form] = Form.useForm();
+  const fill = () => {
+    form.setFieldsValue({
+      username: 'admin',
+      password: 'adminpassword',
+    });
+  };
   return (
     <Layout style={{ height: '400px' }}>
       <Header>
-        <Space>
-          <Button type="primary">Item1</Button>
-          <Button type="primary">Item2</Button>
-          <Button type="primary">Item3</Button>
-          <Button type="primary">Item4</Button>
-        </Space>
+        <Space>表单</Space>
       </Header>
       <Layout>
         <Sider>Sider</Sider>
         <Content>
+          <Button onClick={fill}>填充</Button>
           <Button
             onClick={() => {
-              setVisible(true);
+              form.resetFields();
             }}
-            type="primary"
           >
-            新增
+            重置
           </Button>
+          {/* 基本 */}
+          {/* 提交 */}
+          <Form
+            onSubmit={(v) => {
+              console.log(v);
+            }}
+            form={form}
+          >
+            <Form.Item
+              label="用户名"
+              field="username"
+              rules={[
+                { required: true, message: '用户名必填' },
+                { minLength: 6, message: '用户名至少6位' },
+              ]}
+            >
+              <Input placeholder="请输入用户名"/>
+            </Form.Item>
+            <Form.Item label="密码" field="password">
+              <Input type="password" placeholder="请输入密码"/>
+            </Form.Item>
+            <Form.Item>
+              <Button htmlType="submit">登录</Button>
+            </Form.Item>
+          </Form>
+          {/* 交互 */}
+
+          {/* 校验 */}
         </Content>
       </Layout>
       <Footer>Footer</Footer>
