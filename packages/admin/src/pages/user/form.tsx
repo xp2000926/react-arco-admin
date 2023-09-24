@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useMemo } from 'react';
 import { Drawer, Form, Input, Message } from '@arco-design/web-react';
 import { User } from '.';
+import AvatarUploader from './components/AvatarUploader';
 
 type FormProps = {
   visible: boolean;
@@ -22,7 +23,7 @@ const addTableData = async (data: Partial<User>) => {
   return { ok: newItem && newItem._id, data: newItem };
 };
 const updateTableData = async (id: string, data: Partial<User>) => {
-  const result= await fetch(`/api/user/${id}`, {
+  const result = await fetch(`/api/user/${id}`, {
     method: 'PATCH',
     body: JSON.stringify(data),
     headers: {
@@ -100,6 +101,9 @@ function UserForm({ visible, setVisible, editedItem, callback }: FormProps) {
           rules={[{ required: true, message: '用户名是必填项' }]}
         >
           <Input placeholder="请输入用户名" />
+        </Form.Item>
+        <Form.Item label="头像" field="avatar">
+          <AvatarUploader />
         </Form.Item>
         <Form.Item label="邮箱" field="email">
           <Input placeholder="请输入邮箱" />

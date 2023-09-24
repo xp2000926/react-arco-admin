@@ -8,6 +8,7 @@ import {
   Delete,
   HttpStatus,
   Query,
+  UseGuards,
 } from '@nestjs/common'
 import { RoleService } from '../services/role.service'
 import { CreateRoleDto } from '../dtos/role.dto'
@@ -22,10 +23,11 @@ import {
   BaseApiErrorResponse,
   SwaggerBaseApiResponse,
 } from '@/shared/dtos/base-api-response.dto'
+import { AuthGuard } from '@nestjs/passport'
 @ApiTags('角色')
 @Controller('role')
 export class RoleController {
-  constructor(private readonly roleService: RoleService) {}
+  constructor(private readonly roleService: RoleService) { }
 
   @ApiOperation({
     summary: '新增角色',
@@ -39,6 +41,8 @@ export class RoleController {
     type: BaseApiErrorResponse,
   })
   @Post()
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   create(@Body() createRoleDto: CreateRoleDto) {
     return this.roleService.create(createRoleDto)
   }
@@ -54,6 +58,8 @@ export class RoleController {
     status: HttpStatus.NOT_FOUND,
     type: BaseApiErrorResponse,
   })
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @Get()
   async findAll(@Query() query: PaginationParamsDto) {
     const { data, total } = await this.roleService.findAll(query)
@@ -74,6 +80,8 @@ export class RoleController {
     status: HttpStatus.NOT_FOUND,
     type: BaseApiErrorResponse,
   })
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.roleService.findOne(id)
@@ -90,6 +98,8 @@ export class RoleController {
     status: HttpStatus.NOT_FOUND,
     type: BaseApiErrorResponse,
   })
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateRoleDto: CreateRoleDto) {
     return {
@@ -103,7 +113,8 @@ export class RoleController {
   @ApiResponse({
     status: HttpStatus.NO_CONTENT,
   })
-  @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.roleService.remove(id)

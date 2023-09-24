@@ -1,89 +1,63 @@
-import './App.css';
-import {
-  Layout,
-  Space,
-  Button,
-  Drawer,
-  Form,
-  Input,
-} from '@arco-design/web-react';
 import { useState } from 'react';
-const { Header, Sider, Content, Footer } = Layout;
+import { Tree } from '@arco-design/web-react';
+// 加个数据
+const TreeData = [
+  {
+    title: 'Trunk 0-0',
+    key: '0-0',
+    children: [
+      {
+        title: 'Branch 0-0-2',
+        key: '0-0-2',
+        selectable: false,
+        children: [
+          {
+            title: 'Leaf',
+            key: '0-0-2-1',
+            children: [
+              {
+                title: 'Leafsss 0-0-2',
+                key: '0-0-2-1-0',
+                children: [
+                  {
+                    title: 'Leaf',
+                    key: '0-0-2-1-0-0',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    title: 'Trunk 0-1',
+    key: '0-1',
+    children: [
+      {
+        title: 'Branch 0-1-1',
+        key: '0-1-1',
+        children: [
+          {
+            title: 'Leaf',
+            key: '0-1-1-0',
+          },
+        ],
+      },
+    ],
+  },
+];
 
 function App() {
-  const [visible, setVisible] = useState(false);
-  const [form] = Form.useForm();
-  const fill = () => {
-    form.setFieldsValue({
-      username: 'admin',
-      password: 'adminpassword',
-    });
-  };
+  // 创建一个状态，以前面数据为初始值
+  const [treeData, setTreeData] = useState(TreeData);
   return (
-    <Layout style={{ height: '400px' }}>
-      <Header>
-        <Space>表单</Space>
-      </Header>
-      <Layout>
-        <Sider>Sider</Sider>
-        <Content>
-          <Button onClick={fill}>填充</Button>
-          <Button
-            onClick={() => {
-              form.resetFields();
-            }}
-          >
-            重置
-          </Button>
-          {/* 基本 */}
-          {/* 提交 */}
-          <Form
-            onSubmit={(v) => {
-              console.log(v);
-            }}
-            form={form}
-          >
-            <Form.Item
-              label="用户名"
-              field="username"
-              rules={[
-                { required: true, message: '用户名必填' },
-                { minLength: 6, message: '用户名至少6位' },
-              ]}
-            >
-              <Input placeholder="请输入用户名"/>
-            </Form.Item>
-            <Form.Item label="密码" field="password">
-              <Input type="password" placeholder="请输入密码"/>
-            </Form.Item>
-            <Form.Item>
-              <Button htmlType="submit">登录</Button>
-            </Form.Item>
-          </Form>
-          {/* 交互 */}
-
-          {/* 校验 */}
-        </Content>
-      </Layout>
-      <Footer>Footer</Footer>
-
-      <Drawer
-        width={332}
-        title={<span>Basic Information </span>}
-        visible={visible}
-        okText="确定"
-        onOk={() => {
-          setVisible(false);
-        }}
-        onCancel={() => {
-          setVisible(false);
-        }}
-      >
-        <div>Here is an example text.</div>
-
-        <div>Here is an example text.</div>
-      </Drawer>
-    </Layout>
+    <div>
+      {/* 设置到treeData上 */}
+      <Tree defaultSelectedKeys={['0-0-1']} treeData={treeData}></Tree>
+    </div>
   );
 }
+
 export default App;
