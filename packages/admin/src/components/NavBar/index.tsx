@@ -34,7 +34,7 @@ import Settings from '../Settings';
 import styles from './style/index.module.less';
 import defaultLocale from '@/locale';
 import useStorage from '@/utils/useStorage';
-import { generatePermission } from '@/routes';
+// import { generatePermission } from '@/routes';
 
 function Navbar({ show }: { show: boolean }) {
   const t = useLocale();
@@ -59,17 +59,17 @@ function Navbar({ show }: { show: boolean }) {
     }
   }
 
-  useEffect(() => {
-    dispatch({
-      type: 'update-userInfo',
-      payload: {
-        userInfo: {
-          ...userInfo,
-          permissions: generatePermission(role),
-        },
-      },
-    });
-  }, [role]);
+  // useEffect(() => {
+  //   dispatch({
+  //     type: 'update-userInfo',
+  //     payload: {
+  //       userInfo: {
+  //         ...userInfo,
+  //         permissions: generatePermission(role),
+  //       },
+  //     },
+  //   });
+  // }, [role]);
 
   if (!show) {
     return (

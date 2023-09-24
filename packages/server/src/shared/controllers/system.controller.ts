@@ -13,8 +13,8 @@ export class SystemController {
   @ApiOperation({
     summary: '数据库备份列表',
   })
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
   @Get('/database')
   async list() {
     //docker-compose exec -T mongo ls /dump
@@ -33,8 +33,8 @@ export class SystemController {
   @ApiOperation({
     summary: '数据库备份',
   })
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
   @Post('/database/dump')
   async dump(@Body() data) {
     const ret = await this.spawn(
@@ -58,8 +58,8 @@ export class SystemController {
   @ApiOperation({
     summary: '数据库恢复',
   })
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
+  // @ApiBearerAuth()
+  // @UseGuards(AuthGuard('jwt'))
   @Post('/database/restore')
   async restore(@Body() dto: BackupDto) {
     console.log('恢复数据', dto.file)

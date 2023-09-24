@@ -31,10 +31,12 @@ export const routes: IRoute[] = [
   {
     name: 'menu.user',
     key: 'user',
+     requiredPermissions: [{ resource: 'user', actions: ['read', 'write'] }],
   },
   {
     name: 'menu.role',
-    key: 'role',
+    key: 'role', 
+    requiredPermissions: [{ resource: 'user', actions: ['read', 'write'] }],
   }
 ];
 
@@ -49,19 +51,19 @@ export const getName = (path: string, routes) => {
   });
 };
 
-export const generatePermission = (role: string) => {
-  const actions = role === 'admin' ? ['*'] : ['read'];
-  const result = {};
-  routes.forEach((item) => {
-    if (item.children) {
-      item.children.forEach((child) => {
-        result[child.name] = actions;
-      });
-    }
-  });
-  return result;
-};
-
+// export const generatePermission = (role: string) => {
+//   const actions = role === 'admin' ? ['*'] : ['read'];
+//   const result = {};
+//   routes.forEach((item) => {
+//     if (item.children) {
+//       item.children.forEach((child) => {
+//         result[child.name] = actions;
+//       });
+//     }
+//   });
+//   return result;
+// };
+// 生成路由
 const useRoute = (userPermission): [IRoute[], string] => {
   const filterRoute = (routes: IRoute[], arr = []): IRoute[] => {
     if (!routes.length) {

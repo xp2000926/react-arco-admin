@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState, useMemo } from 'react';
-import { Drawer, Form, Input, Message } from '@arco-design/web-react';
+import { Drawer, Form, Input, Message, Select } from '@arco-design/web-react';
 import { User } from '.';
 import AvatarUploader from './components/AvatarUploader';
-
+import { useRequest } from 'ahooks';
+import { getAllRoles } from '../role/api';
 type FormProps = {
   visible: boolean;
   setVisible: (b: boolean) => void;
@@ -41,6 +42,20 @@ function UserForm({ visible, setVisible, editedItem, callback }: FormProps) {
     () => (editedItem._id ? '更新' : '新增') + name,
     [editedItem._id]
   );
+  // 获取可用角色
+  const { data: roles, run } = useRequest(getAllRoles, {
+    manual: true,
+  });
+
+  const rolesOptions = useMemo(() => {
+    if (roles) {
+      return roles.map((role) => ({
+        label: role.name,
+        value: role._id,
+      }));
+    }
+    return [];
+  }, [roles]);
   const onSubmit = () => {
     form.validate(async (errors) => {
       const operation = editedItem._id ? '编辑' : '新增';
@@ -79,7 +94,13 @@ function UserForm({ visible, setVisible, editedItem, callback }: FormProps) {
       onCancel={() => {
         setVisible(false);
       }}
-      afterOpen={() => form.setFieldsValue(editedItem)}
+      afterOpen={() => {
+        form.setFieldsValue(editedItem);
+        // 获取用户可用角色
+        if (!roles) {
+          run();
+        }
+      }}
       afterClose={() => {
         form.resetFields();
       }}
@@ -101,6 +122,9 @@ function UserForm({ visible, setVisible, editedItem, callback }: FormProps) {
           rules={[{ required: true, message: '用户名是必填项' }]}
         >
           <Input placeholder="请输入用户名" />
+        </Form.Item>
+        <Form.Item label="用户角色" field="role" rules={[{ required: true }]}>
+          <Select placeholder="请选择一个用户角色" options={rolesOptions} />
         </Form.Item>
         <Form.Item label="头像" field="avatar">
           <AvatarUploader />
