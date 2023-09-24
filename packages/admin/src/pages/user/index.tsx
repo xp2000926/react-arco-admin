@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   Card,
@@ -9,6 +9,7 @@ import {
   Message,
 } from '@arco-design/web-react';
 import { usePagination } from 'ahooks';
+import DrawerForm from './form';
 const { Title, Text } = Typography;
 
 const getTableData = async ({ current, pageSize }) => {
@@ -20,6 +21,21 @@ const getTableData = async ({ current, pageSize }) => {
   );
   return { list, total };
 };
+
+export const initial = {
+  _id: '',
+  phoneNumber: '',
+  password: '',
+  name: '',
+  avatar: '',
+  email: '',
+  job: '',
+  jobName: '',
+  organization: '',
+  location: '',
+  personalWebsite: '',
+};
+export type User = typeof initial;
 
 export default function UserPage() {
   const { data, pagination, loading, refresh } = usePagination(getTableData, {
@@ -92,8 +108,17 @@ export default function UserPage() {
         Message.error('删除用户失败,请从试!');
       }
     } else {
+      setEditedItem(record);
+      setVisible(true);
     }
   };
+  const [visible, setVisible] = useState(false);
+  const [editedItem, setEditedItem] = useState(initial);
+  const onAdd = () => {
+    setEditedItem(initial);
+    setVisible(true);
+  };
+
   return (
     //容器
     <Card>
@@ -104,9 +129,7 @@ export default function UserPage() {
       {/* 操作暗流 */}
       <Space direction="vertical" style={{ width: '100%' }}>
         {/* 操作按钮 */}
-        <Button type="primary" style={{ marginBottom: 10 }}>
-          新增
-        </Button>
+        <Button onClick={onAdd}>新增</Button>
         {/* 页面内容 */}
         {/* 数据表格 */}
         <Table
@@ -118,6 +141,10 @@ export default function UserPage() {
           style={{ width: '100%' }}
         />
       </Space>
+      {/* 表单 */}
+      <DrawerForm
+        {...{ visible, setVisible, editedItem, callback: () => refresh() }}
+      />
     </Card>
   );
 }
