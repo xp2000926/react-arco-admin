@@ -31,13 +31,18 @@ export const routes: IRoute[] = [
   {
     name: 'menu.user',
     key: 'user',
-     requiredPermissions: [{ resource: 'user', actions: ['read', 'write'] }],
+    requiredPermissions: [{ resource: 'user', actions: ['read', 'write'] }],
   },
   {
     name: 'menu.role',
-    key: 'role', 
+    key: 'role',
     requiredPermissions: [{ resource: 'user', actions: ['read', 'write'] }],
-  }
+  },
+  {
+    name: 'menu.content',
+    key: 'content',
+    requiredPermissions: [{ resource: 'content' }],
+  },
 ];
 
 export const getName = (path: string, routes) => {
