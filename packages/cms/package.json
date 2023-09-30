@@ -1,12 +1,27 @@
 {
   "name": "cms",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "daisyui": "^3.8.1",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "sass": "^1.68.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.7.1",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "autoprefixer": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
 }
