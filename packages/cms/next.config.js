@@ -4,10 +4,10 @@ const nextConfig = {
     return [
       {
         source: '/data-api/:path*',
-        destination: 'http://localhost:4000/:path*',
-      },
-    ];
+        destination: 'http://localhost:4000/:path*'
+      }
+    ]
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

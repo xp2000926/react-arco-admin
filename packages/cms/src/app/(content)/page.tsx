@@ -1,13 +1,15 @@
-import Image from 'next/image'
-async function getData(){
-  const res =  await fetch('https://jsonplaceholder.typicode.com/posts/1')
-  return res.json()
-} 
+import Image from 'next/image';
+
+async function getData() {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+  return res.json();
+}
 
 export default async function Home() {
   // 数据请求
-  const data = await getData()
+  const data = await getData();
   console.log(data);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -116,5 +118,5 @@ export default async function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }

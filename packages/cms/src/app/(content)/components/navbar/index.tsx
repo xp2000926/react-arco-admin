@@ -2,14 +2,14 @@
 import useSWR from 'swr';
 
 import ToggleButton from './toggle-button';
-import Theme from './theme';
+import Theme from "./theme";
 
-import LoginButton from './login-button';
+import LoginButton from "./login-button";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 export default function NavBar() {
   const { data, error } = useSWR(
-    'https://jsonplaceholder.typicode.com/users/1',
+    "https://jsonplaceholder.typicode.com/users/1",
     fetcher
   );
   return (
