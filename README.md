@@ -21,7 +21,7 @@ pnpm db:dump
 # 从dump中恢复数据
 pnpm db:restore
 # 启动服务端
-# API地址： http://localhost:3000
+# API地址： http://localhost:4000
 pnpm dev:server
 # 启动前端admin项目
 pnpm dev:admin
