@@ -7,7 +7,6 @@ import { join } from 'path'
 import { RemoveSensitiveInfoInterceptor } from './shared/interceptors/remove-sensitive-info.interceptor'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
-
 const port = 4000
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)

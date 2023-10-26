@@ -8,7 +8,7 @@ import SideMenu from './components/sidemenu';
 import NavBar from './components/navbar/index';
 import Footer from './components/footer';
 import { ThemeContext } from './theme-context';
-
+import "highlight.js/styles/github-dark.css";
 export default function RootLayout({
   children,
 }: {

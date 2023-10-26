@@ -134,8 +134,8 @@ export class UserController {
   })
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
-  @ApiBasicAuth() //鉴权
-  @UseGuards(AuthGuard('jwt'))
+  // @ApiBasicAuth() //鉴权
+  // @UseGuards(AuthGuard('jwt'))
   async upload(
     @Req() req: any,
     @Body() uploadDto: UploadDTO,

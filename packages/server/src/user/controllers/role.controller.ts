@@ -27,7 +27,7 @@ import { AuthGuard } from '@nestjs/passport'
 @ApiTags('角色')
 @Controller('role')
 export class RoleController {
-  constructor(private readonly roleService: RoleService) { }
+  constructor(private readonly roleService: RoleService) {}
 
   @ApiOperation({
     summary: '新增角色',
